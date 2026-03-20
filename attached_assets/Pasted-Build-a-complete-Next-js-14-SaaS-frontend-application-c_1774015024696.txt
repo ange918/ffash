@@ -1,0 +1,421 @@
+Build a complete Next.js 14 SaaS frontend application called "FASHLINK" — an AI creative direction platform exclusively for fashion stylists. All UI text in French. No mock data, no simulations.
+
+## TECH STACK
+- Next.js 14 (App Router, TypeScript)
+- Tailwind CSS (no component library)
+- Framer Motion for animations
+- NextAuth.js (credentials provider)
+- Prisma + PostgreSQL
+- Anthropic Claude API (claude-sonnet-4-20250514)
+- OpenAI API (DALL·E 3 + GPT-4 Vision) for sketch-to-illustration
+- jsPDF for certificate export
+- next/font for Google Fonts
+
+## DESIGN SYSTEM — NON-NEGOTIABLE
+- Primary background: #FFFFFF
+- Primary text: #000000
+- Accent: #000000
+- Zero border-radius everywhere (border-radius: 0 on ALL elements)
+- Zero box-shadows
+- Zero color gradients
+- Headings font: "Unbounded" via next/font/google
+- Body font: "Montserrat" weight 600 via next/font/google
+- Buttons: black background, white text, sharp corners, uppercase tracking-widest
+- Cards: white bg, 1px solid black border
+- Inputs: 1px solid black border, no radius, black focus ring
+- Dividers: 1px solid black lines
+- Layout: editorial minimalism, generous whitespace, asymmetric grids
+- Animations: subtle fade-in on page load (Framer Motion), staggered list reveals, hover underline slide on nav links
+- Custom CSS cursor: crosshair
+
+Apply fonts globally in layout.tsx using CSS variables --font-heading and --font-body.
+
+## FILE STRUCTURE
+/app
+  layout.tsx (global fonts, metadata "FASHLINK — Direction Créative IA")
+  page.tsx (landing)
+  /auth
+    /signin/page.tsx
+    /signup/page.tsx
+  /dashboard
+    layout.tsx (sidebar + protected route wrapper)
+    page.tsx
+    /profil/page.tsx
+    /projets/page.tsx
+    /projets/nouveau/page.tsx
+    /projets/[id]/page.tsx
+  /partage/[token]/page.tsx
+/components
+  /ui (Button, Input, Card, Badge, Tabs, Modal, Spinner, StepIndicator)
+  /layout (Sidebar, TopBar, Logo)
+  /features
+    AdnForm.tsx
+    DirectionCard.tsx
+    StorytellingCard.tsx
+    SketchUploader.tsx
+    IllustrationResult.tsx
+    MaterialInventory.tsx
+    CertificatePreview.tsx
+    ColorPalette.tsx
+    GenerationsTimeline.tsx
+/lib
+  anthropic.ts
+  openai.ts
+  prisma.ts
+  auth.ts
+  pdf.ts
+/app/api
+  /auth/[...nextauth]/route.ts
+  /adn/generate/route.ts
+  /projects/route.ts
+  /projects/[id]/route.ts
+  /projects/[id]/generate-direction/route.ts
+  /projects/[id]/generate-storytelling/route.ts
+  /projects/[id]/generate-illustration/route.ts
+  /projects/[id]/generate-materials/route.ts
+  /projects/[id]/generations/route.ts
+  /projects/[id]/share/route.ts
+  /partage/[token]/route.ts
+
+## PAGE — LANDING `/`
+
+Full-viewport hero:
+- Top-left: Logo "FASHLINK" in Unbounded font, 14px tracking-[0.3em]
+- Top-right: nav links "CONNEXION" and "S'INSCRIRE" (uppercase, Montserrat 600)
+- Center: giant heading in Unbounded — "L'IA AU SERVICE\nDE VOTRE VISION" — with Framer Motion fade-up on load
+- Below heading: subtext in Montserrat 600 — "Plateforme de direction créative, moodboard et certification pour stylistes."
+- CTA black button "COMMENCER GRATUITEMENT" with Framer Motion hover scale(1.02)
+- Bottom-left corner: vertical text rotated -90deg "FASHLINK © 2025" in tiny Montserrat
+
+Features section (below hero, separated by full-width 1px black line):
+- Section title "CE QUE FASHLINK FAIT POUR VOUS" in Unbounded
+- 5 feature blocks in asymmetric grid (2 left, 3 right):
+  1. PROFIL ADN — "Définissez votre identité créative unique"
+  2. DIRECTION IA — "Collections, palettes, matières générées par l'IA"
+  3. CROQUIS → ILLUSTRATION — "Transformez vos esquisses en visuels 2D"
+  4. INVENTAIRE MATÉRIAUX — "Liste et budget de vos matériaux automatiquement"
+  5. CERTIFICAT — "Prouvez l'antériorité de vos créations"
+- Each block: number "01" "02" etc in Unbounded large gray, title in Unbounded, description in Montserrat
+
+Footer: full-width black bar, white "FASHLINK" text centered.
+
+## PAGE — AUTH `/auth/signin` and `/auth/signup`
+
+Split layout: left half black bg with "FASHLINK" large Unbounded white text + tagline, right half white with form.
+Form fields: Email, Mot de passe (+ Nom complet for signup).
+Black submit button. Link to switch between signin/signup.
+NextAuth credentials provider. Passwords hashed with bcryptjs.
+
+## LAYOUT — DASHBOARD `/dashboard/layout.tsx`
+
+Left sidebar (fixed, 240px wide, black bg, white text):
+- Logo "FASHLINK" at top in Unbounded white
+- Nav links with white text, hover: white underline slides from left:
+  — Tableau de bord
+  — Profil ADN
+  — Mes Projets
+  — Nouveau Projet
+- Bottom: user email + "DÉCONNEXION" button
+Main content: white bg, padding 48px
+
+Sidebar has a 1px white right border.
+
+## PAGE — DASHBOARD `/dashboard`
+
+Greeting: "BONJOUR, [NAME]" in Unbounded large.
+Stats row (3 cards, 1px black border):
+- Projets créés: number
+- Illustrations générées: number
+- Dernière activité: date
+Recent projects: table with columns Titre / Saison / Date / Statut / Actions.
+Empty state: centered text "Aucun projet. Créez votre premier projet." + button.
+
+## PAGE — PROFIL ADN `/dashboard/profil`
+
+Title "VOTRE ADN CRÉATIF" in Unbounded.
+3-step form with StepIndicator component (3 numbered steps, active step filled black):
+
+Step 1 — INSPIRATIONS:
+- Textarea "Vos inspirations, références, univers créatif"
+- Checkboxes styled as black-border square tags: Durabilité / Luxe / Avant-garde / Minimalisme / Streetwear / Couture / Sportswear / Bohème
+
+Step 2 — MARCHÉ:
+- Select "Marché cible": Femme / Homme / Mixte / Enfant / Unisexe
+- Select "Gamme de prix": Accessible (< 50€) / Mid-range (50–200€) / Premium (200–500€) / Luxe (500€+)
+
+Step 3 — STYLE:
+- Radio buttons styled as large square selectors: Classique / Moderne / Expérimental / Romantique / Streetwear / Couture
+
+On final submit:
+- POST to /api/adn/generate
+- Show loading spinner with text "L'IA analyse votre profil créatif..."
+- Display returned synthesis in a black-border card titled "VOTRE SYNTHÈSE ADN"
+- Save to DB
+
+## PAGE — PROJETS `/dashboard/projets`
+
+Title "MES PROJETS" in Unbounded.
+Grid 3 columns of project cards (1px black border):
+- Project name in Unbounded
+- Season badge (outlined black)
+- Creation date
+- Hover: thin black bottom border animates left to right
+Button "NOUVEAU PROJET" top-right.
+
+## PAGE — NOUVEAU PROJET `/dashboard/projets/nouveau`
+
+Title "NOUVEAU PROJET" in Unbounded.
+Form:
+- Input "Nom du projet"
+- Textarea "Thème ou concept initial"
+- Select "Saison": SS25 / AW25 / SS26 / AW26 / Intemporel
+Submit button → creates project → redirects to /dashboard/projets/[id]
+
+## PAGE — PROJECT DETAIL `/dashboard/projets/[id]`
+
+Project name as page title in Unbounded.
+Season badge. Creation date.
+
+6 tabs (tab bar: horizontal, active tab underlined with 2px solid black, Montserrat 600 uppercase):
+DIRECTION / STORYTELLING / ILLUSTRATION / MATÉRIAUX / HISTORIQUE / CERTIFICAT
+
+---
+
+### TAB 1 — DIRECTION IA
+
+Button "GÉNÉRER LA DIRECTION CRÉATIVE"
+Loading state: animated dots "Génération en cours..."
+On click: POST /api/projects/[id]/generate-direction
+
+Claude API system prompt:
+"Tu es un directeur artistique de mode de renommée internationale. Génère une direction créative complète pour une collection de mode. Réponds UNIQUEMENT en JSON valide avec cette structure exacte:
+{
+  'theme': 'string — titre du thème principal',
+  'mot_directeur': 'string — une phrase d intention artistique',
+  'palette': [{'hex': '#XXXXXX', 'nom': 'string'}, x5],
+  'matieres': ['string', x5],
+  'capsules': [{'nom': 'string', 'description': 'string'}, x3],
+  'silhouettes': ['string', x4]
+}"
+
+Display DirectionCard component:
+- Theme title in giant Unbounded
+- Mot directeur in Montserrat italic
+- ColorPalette: 5 square swatches (60x60px, no radius) with hex + name below
+- Matières: horizontal tag list (1px black border tags)
+- 3 Capsule cards in grid (name in Unbounded, description in Montserrat)
+- Silhouettes: numbered list
+
+---
+
+### TAB 2 — STORYTELLING
+
+Button "GÉNÉRER LE CONCEPT"
+POST /api/projects/[id]/generate-storytelling
+
+Claude API:
+"Tu es un rédacteur créatif spécialisé en mode. Réponds UNIQUEMENT en JSON:
+{
+  'concept': 'string — paragraphe du concept de collection',
+  'note_intention': 'string — note d intention du styliste',
+  'message_artistique': 'string — phrase manifeste',
+  'univers_references': ['string', x4]
+}"
+
+Display StorytellingCard:
+- "CONCEPT" section in editorial layout
+- "NOTE D'INTENTION" indented with left black border
+- "MESSAGE ARTISTIQUE" large centered italic Montserrat
+- References as inline tags
+
+---
+
+### TAB 3 — ILLUSTRATION (CROQUIS → 2D)
+
+SketchUploader component:
+- Large dashed black border upload zone (no radius)
+- Text: "DÉPOSEZ VOTRE CROQUIS ICI" in Unbounded
+- Sub: "JPG, PNG — 5MB max"
+- On file select: show preview image in black border frame
+Optional input: "Précisions stylistiques" (ex: robe longue, style épuré, noir)
+Button "TRANSFORMER EN ILLUSTRATION 2D"
+
+On submit: POST /api/projects/[id]/generate-illustration
+API route:
+1. Receive base64 image + style text + user ADN synthese
+2. Call GPT-4 Vision: "Décris précisément ce croquis de mode en français pour générer une illustration 2D professionnelle. Inclus: type de vêtement, silhouette, détails vestimentaires, style."
+3. Build DALL·E 3 prompt: "Professional 2D fashion illustration, flat design, technical fashion sketch style, clean lines, white background, black outlines, {GPT-4 description}, {user style precision}, {user ADN dominant style}. NOT photorealistic. Illustration only."
+4. Call DALL·E 3, return image URL
+5. Save to DB (illustrations table)
+
+IllustrationResult component:
+- Side-by-side: sketch (left) | illustration (right), both in black border frames
+- Labels "CROQUIS ORIGINAL" and "ILLUSTRATION GÉNÉRÉE" in Unbounded small
+- Button "TÉLÉCHARGER L'ILLUSTRATION" (downloads image)
+- Button "AJOUTER AU CERTIFICAT" (toggles flag in DB)
+
+---
+
+### TAB 4 — MATÉRIAUX & BUDGET
+
+Title "INVENTAIRE DES MATÉRIAUX"
+Button "GÉNÉRER L'INVENTAIRE"
+POST /api/projects/[id]/generate-materials
+
+Claude API prompt (using direction + storytelling context):
+"Tu es un expert en sourcing de matériaux pour la mode. En fonction de la direction créative et du profil ADN du styliste, génère un inventaire réaliste de matériaux nécessaires. Réponds UNIQUEMENT en JSON:
+{
+  'materiaux': [
+    {
+      'nom': 'string',
+      'categorie': 'string (Tissu | Doublure | Mercerie | Accessoire | Finition)',
+      'description': 'string',
+      'quantite_estimee': 'string (ex: 3m par pièce)',
+      'prix_unitaire_eur': number,
+      'fournisseurs_suggeres': ['string', x2],
+      'conseils': 'string'
+    }
+  ],
+  'budget_estime_total': number,
+  'budget_par_piece': number,
+  'notes_sourcing': 'string'
+}"
+
+MaterialInventory component:
+- Summary row: Budget total estimated | Budget par pièce
+- Table with columns: Matériau / Catégorie / Quantité / Prix unitaire / Fournisseurs / Conseils
+- Category filter tabs: Tous / Tissu / Doublure / Mercerie / Accessoire / Finition
+- Each row: hover bg #f5f5f5
+- Total budget displayed prominently at bottom in Unbounded
+- Button "EXPORTER EN PDF" — generates PDF inventory with jsPDF
+- Button "MODIFIER" — inline editable table cells (user can adjust quantities/prices, totals recalculate live)
+
+---
+
+### TAB 5 — HISTORIQUE
+
+Title "HISTORIQUE DES GÉNÉRATIONS"
+GenerationsTimeline component:
+- Vertical timeline with 1px black left border
+- Each entry: dot on line, timestamp, type badge (DIRECTION / STORYTELLING / ILLUSTRATION / MATÉRIAUX), content preview (first 100 chars)
+- Click entry: expand to show full content in collapsible panel
+- Filter buttons: Tous / Direction / Storytelling / Illustration / Matériaux
+
+---
+
+### TAB 6 — CERTIFICAT
+
+CertificatePreview component:
+Preview card styled as official document (black border, internal padding):
+- Header: "FASHLINK" in Unbounded + "CERTIFICAT DE PREUVE D'ANTÉRIORITÉ"
+- Horizontal divider
+- Fields: Nom du projet / Styliste / Date de création / Dernière génération IA / ID Certificat (UUID)
+- Sections present: checkmarks for Direction IA / Storytelling / Illustration / Matériaux
+- Footer: "Ce document atteste de l'antériorité de la création."
+
+Button "EXPORTER EN PDF" — jsPDF generates full certificate with all sections
+Button "COPIER LE LIEN PRIVÉ" — generates shareToken UUID, saves to DB, copies /partage/[token] URL to clipboard. Shows "Lien copié !" toast.
+
+---
+
+## PAGE — PARTAGE PUBLIC `/partage/[token]`
+
+Fetch project by shareToken.
+Read-only page:
+- FASHLINK logo top-left
+- Project title in Unbounded
+- ADN synthesis block
+- Direction créative summary (theme + palette + matières)
+- Storytelling concept
+- Illustration (if flagged)
+- Materiau budget summary
+- Footer: "Créé avec FASHLINK"
+
+## DATABASE SCHEMA (Prisma)
+
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  password String
+  name String
+  adn_inspirations String?
+  adn_valeurs String[]
+  adn_marche String?
+  adn_prix String?
+  adn_style String?
+  adn_synthese String?
+  projects Project[]
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id])
+  title String
+  theme String?
+  season String?
+  shareToken String? @unique
+  generations AiGeneration[]
+  illustrations Illustration[]
+  materials Material[]
+  createdAt DateTime @default(now())
+}
+
+model AiGeneration {
+  id String @id @default(cuid())
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  type String
+  content Json
+  createdAt DateTime @default(now())
+}
+
+model Illustration {
+  id String @id @default(cuid())
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  sketchUrl String
+  resultUrl String
+  inCertificate Boolean @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Material {
+  id String @id @default(cuid())
+  projectId String
+  project Project @relation(fields: [projectId], references: [id])
+  content Json
+  createdAt DateTime @default(now())
+}
+
+## REUSABLE UI COMPONENTS `/components/ui`
+
+Button.tsx — variant: primary (black bg white text) | outline (white bg black border) | ghost
+Input.tsx — 1px black border, no radius, Montserrat 600, focus: 2px black outline
+Card.tsx — white bg, 1px black border, padding 24px
+Badge.tsx — small uppercase tag, outlined or filled black
+Tabs.tsx — horizontal tab bar, active underline 2px black
+Modal.tsx — centered overlay, white card, black close button
+Spinner.tsx — animated black rotating square (CSS animation)
+Toast.tsx — bottom-right notification, black bg white text
+StepIndicator.tsx — numbered steps, completed: filled black circle, active: outlined
+
+## ENV VARIABLES
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL=
+ANTHROPIC_API_KEY=
+OPENAI_API_KEY=
+
+## IMPORTANT RULES
+- All UI text strictly in French
+- No mock data anywhere — all AI calls are real API calls
+- All dashboard routes protected server-side (redirect to /auth/signin if no session)
+- Framer Motion page transitions: fade + slight translateY on every page
+- Mobile responsive: sidebar collapses to hamburger menu on mobile
+- Error states: if API call fails, show black error card with message
+- Loading states: always show Spinner + contextual text during AI generation
+- jsPDF for all PDF exports (client-side, no server PDF)
+- Images uploaded for sketch are converted to base64 client-side before sending to API
+- RLS equivalent: all DB queries filtered by session userId
