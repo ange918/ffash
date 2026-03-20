@@ -15,11 +15,11 @@ export default function LandingPage() {
           FASHLINK
         </span>
         <nav className="flex items-center gap-8">
-          <Link href="/auth/signin" className="relative group text-xs tracking-widest uppercase font-semibold">
+          <Link href="/auth/signin" className="relative group text-xs tracking-widest uppercase font-semibold text-black">
             CONNEXION
             <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full" />
           </Link>
-          <Link href="/auth/signup" className="relative group text-xs tracking-widest uppercase font-semibold">
+          <Link href="/auth/signup" className="relative group text-xs tracking-widest uppercase font-semibold text-black">
             S&apos;INSCRIRE
             <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full" />
           </Link>
