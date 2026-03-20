@@ -1,65 +1,143 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { motion } from "framer-motion";
+import Link from "next/link";
+
+export default function LandingPage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen flex flex-col bg-white text-black">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 py-6 bg-white border-b border-black">
+        <span
+          className="text-sm tracking-[0.3em] uppercase font-black"
+          style={{ fontFamily: "var(--font-heading)" }}
+        >
+          FASHLINK
+        </span>
+        <nav className="flex items-center gap-8">
+          <Link href="/auth/signin" className="relative group text-xs tracking-widest uppercase font-semibold">
+            CONNEXION
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/auth/signup" className="relative group text-xs tracking-widest uppercase font-semibold">
+            S&apos;INSCRIRE
+            <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-black transition-all duration-300 group-hover:w-full" />
+          </Link>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <main className="flex-1 flex flex-col">
+        <section className="flex-1 flex flex-col items-center justify-center px-8 pt-32 pb-20 min-h-screen relative">
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center max-w-4xl"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <h1
+              className="text-5xl md:text-7xl font-black leading-none tracking-tight mb-8 whitespace-pre-line"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              {"L'IA AU SERVICE\nDE VOTRE VISION"}
+            </h1>
+            <p className="text-base md:text-lg tracking-wide mb-12 font-semibold max-w-lg mx-auto">
+              Plateforme de direction créative, moodboard et certification pour stylistes.
+            </p>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                href="/auth/signup"
+                className="inline-block bg-black text-white text-xs tracking-widest uppercase px-10 py-4 font-semibold border border-black hover:bg-white hover:text-black transition-colors duration-200"
+              >
+                COMMENCER GRATUITEMENT
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Vertical rotated text */}
+          <div
+            className="absolute bottom-8 left-8 text-[10px] tracking-widest text-black/40 font-semibold"
+            style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
           >
-            Documentation
-          </a>
-        </div>
+            FASHLINK © 2025
+          </div>
+        </section>
+
+        {/* Divider */}
+        <div className="w-full h-[1px] bg-black" />
+
+        {/* Features Section */}
+        <section className="px-8 py-20">
+          <h2
+            className="text-2xl md:text-3xl font-black mb-16 tracking-tight"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            CE QUE FASHLINK FAIT POUR VOUS
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
+            {features.map((f, i) => (
+              <motion.div
+                key={f.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="border border-black p-8 -ml-[1px] -mt-[1px]"
+              >
+                <span
+                  className="text-5xl font-black text-black/10 block mb-4 leading-none"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3
+                  className="text-sm font-black mb-3 tracking-wide uppercase"
+                  style={{ fontFamily: "var(--font-heading)" }}
+                >
+                  {f.title}
+                </h3>
+                <p className="text-xs leading-relaxed text-black/70 font-semibold">
+                  {f.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-black py-8 flex items-center justify-center">
+          <span
+            className="text-white text-sm tracking-[0.4em] font-black"
+            style={{ fontFamily: "var(--font-heading)" }}
+          >
+            FASHLINK
+          </span>
+        </footer>
       </main>
     </div>
   );
 }
+
+const features = [
+  {
+    title: "PROFIL ADN",
+    desc: "Définissez votre identité créative unique",
+  },
+  {
+    title: "DIRECTION IA",
+    desc: "Collections, palettes, matières générées par l'IA",
+  },
+  {
+    title: "CROQUIS → ILLUSTRATION",
+    desc: "Transformez vos esquisses en visuels 2D",
+  },
+  {
+    title: "INVENTAIRE MATÉRIAUX",
+    desc: "Liste et budget de vos matériaux automatiquement",
+  },
+  {
+    title: "CERTIFICAT",
+    desc: "Prouvez l'antériorité de vos créations",
+  },
+];
