@@ -1,0 +1,31 @@
+
+> ffas@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 345ms
+
+ GET / [32m200[39m in 519ms[2m (next.js: 305ms, application-code: 214ms)[22m
+ GET / [32m200[39m in 64ms[2m (next.js: 13ms, application-code: 52ms)[22m
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+ GET /api/auth/session [32m200[39m in 1422ms[2m (next.js: 1394ms, application-code: 28ms)[22m
+[33m[1m⚠[22m[39m Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "4251e5b4-f5ce-4159-9410-89336488f4e1-00-3kt1y2owrfvf0.worf.replit.dev".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['4251e5b4-f5ce-4159-9410-89336488f4e1-00-3kt1y2owrfvf0.worf.replit.dev'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[33m[1m⚠[22m[39m Found a change in next.config.ts. Restarting the server to apply the changes...
+[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 274ms
+
