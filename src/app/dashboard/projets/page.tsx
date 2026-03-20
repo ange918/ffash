@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -7,7 +8,9 @@ import { Button } from "@/components/ui/Button";
 
 export default async function ProjetsPage() {
   const session = await getServerSession(authOptions);
-  const user = await prisma.user.findUnique({ where: { email: session!.user!.email! } });
+  if (!session?.user?.email) redirect("/auth/signin");
+
+  const user = await prisma.user.findUnique({ where: { email: session.user.email } });
 
   const projects = await prisma.project.findMany({
     where: { userId: user!.id },

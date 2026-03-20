@@ -1,12 +1,15 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { AdnForm } from "@/components/features/AdnForm";
 
 export default async function ProfilPage() {
   const session = await getServerSession(authOptions);
+  if (!session?.user?.email) redirect("/auth/signin");
+
   const user = await prisma.user.findUnique({
-    where: { email: session!.user!.email! },
+    where: { email: session.user.email },
     select: {
       adn_inspirations: true,
       adn_valeurs: true,

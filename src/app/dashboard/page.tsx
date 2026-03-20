@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -7,8 +8,10 @@ import { Button } from "@/components/ui/Button";
 
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
+  if (!session?.user?.email) redirect("/auth/signin");
+
   const user = await prisma.user.findUnique({
-    where: { email: session!.user!.email! },
+    where: { email: session.user.email },
     include: {
       projects: {
         orderBy: { createdAt: "desc" },
