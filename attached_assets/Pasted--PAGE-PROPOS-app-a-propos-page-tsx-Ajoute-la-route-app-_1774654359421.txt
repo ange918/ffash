@@ -1,0 +1,138 @@
+── PAGE À PROPOS (app/a-propos/page.tsx) ──
+
+Ajoute la route app/a-propos/page.tsx et le lien dans la Navbar.
+
+  [HERO À PROPOS]
+  - Fond dégradé 135deg #FDE8EF → #EDE0F0
+  - Centré, padding 7rem 4rem
+  - Badge pré-titre : "✦ Notre Histoire"
+    Montserrat 500, rose-vif, 0.78rem, letterspacing 0.3em
+  - Titre : "Beauté pensée *pour vous*"
+    Unbounded 300/600, clamp(2.5rem,5vw,4rem), texte
+    italique rose-fonce sur "pour vous"
+  - Sous-titre : "Cosmetics Shop, c'est une passion pour le soin,
+    la beauté naturelle et la confiance en soi — au cœur du Bénin."
+    Montserrat 400, 1rem, texte-light, line-height 1.9, max-width 600px, centré
+  - Entrée Framer Motion staggered fadeUp
+
+  [NOTRE HISTOIRE]
+  - Fond blanc, padding 6rem 4rem
+  - Layout 2 colonnes desktop (texte gauche | visuel droite)
+  - Colonne texte :
+    Section-label : "— Notre Histoire"
+      Montserrat 500, rose-vif, 0.68rem, letterspacing 0.4em, uppercase
+    Titre : "Une boutique née *de la passion*"
+      Unbounded 300, clamp(1.8rem,3.5vw,3rem), texte
+    Paragraphes Montserrat 400, 0.95rem, texte-light, line-height 1.95 :
+      "Cosmetics Shop est née d'une conviction simple : chaque peau mérite
+      des soins adaptés, efficaces et accessibles. Fondée au Bénin,
+      notre boutique s'est donnée pour mission de proposer une gamme
+      complète de cosmétiques pour tous les types de peau, tous les teints,
+      tous les besoins."
+      "De la peau ébène à la peau claire, de la peau grasse à la peau sensible,
+      nous avons sélectionné et développé plus de 100 produits — savons,
+      laits, crèmes, gommages, gels de douche et gammes spécialisées —
+      pour accompagner chaque femme, chaque homme, chaque enfant
+      dans sa routine beauté quotidienne."
+      "Notre engagement : la qualité, la transparence et la proximité.
+      Parce que la beauté n'a pas de couleur unique."
+  - Colonne visuelle :
+    Grand cercle fond rose-pale (400px × 400px), centré
+    3 cercles concentriques décoratifs en bordure rose-doux opacity 0.3
+    Icône SVG cœur + fleur combinés, rose-vif, 80px, centré
+    4 petits badges flottants (animation CSS float, delays différents) :
+      "🌿 Naturel" | "💧 Hydratant" | "✨ Éclaircissant" | "💕 Pour toutes"
+      fond blanc, Montserrat 500, texte, 0.72rem,
+      border-radius 999px, ombre légère
+
+  [NOS VALEURS]
+  - Fond #FDE8EF, padding 6rem 4rem
+  - Titre centré : "Nos Valeurs" Unbounded 300 texte
+  - Grille 3 colonnes desktop, 1 mobile, gap 2rem
+  - 6 value cards :
+    Fond blanc, border-radius 20px, padding 2.5rem, text-align center
+    ombre : 0 4px 20px rgba(232,115,154,0.08)
+    hover : translateY(-6px), transition 0.3s
+    Icône emoji grand (48px) + fond cercle rose-pale (72px) centré
+    Titre : Unbounded 400, texte, 1rem, margin-top 1.2rem
+    Description : Montserrat 400, 0.85rem, texte-light, line-height 1.8
+    Valeurs :
+      "💎" | "Qualité" | "Des formules soigneusement sélectionnées pour des résultats visibles et durables"
+      "🌿" | "Naturalité" | "Des ingrédients respectueux de votre peau et de votre bien-être au quotidien"
+      "🤝" | "Proximité" | "Une relation client directe, humaine et réactive — commandez sur WhatsApp en quelques secondes"
+      "✨" | "Inclusivité" | "Des produits pensés pour toutes les carnations, tous les types de peau, sans exception"
+      "🇧🇯" | "Fierté Béninoise" | "Une boutique ancrée au Bénin, fière de servir et sublimer la beauté africaine"
+      "🚀" | "Accessibilité" | "Des prix justes pour que chaque femme accède à des soins de qualité supérieure"
+
+  [NOS CHIFFRES]
+  - Fond blanc, padding 5rem 4rem
+  - Titre centré : "Cosmetics Shop en chiffres"
+    Unbounded 300, texte, clamp(1.8rem,3vw,2.5rem)
+  - 4 stat cards en ligne, séparateurs 1px #FDE8EF :
+    Fond blanc, padding 3rem 2rem, text-align center
+    Chiffre : Unbounded 700, clamp(2.5rem,5vw,4rem), rose-fonce
+    Label : Montserrat 400, 0.82rem, texte-light, letterspacing 0.1em
+    Animation compteur (useEffect + setInterval, count de 0 → valeur finale, duration 1.5s)
+      déclenchée par whileInView Framer Motion
+    Données :
+      "100+" / "Produits disponibles"
+      "12+" / "Gammes spécialisées"
+      "500+" / "Clientes satisfaites"
+      "1" / "Passion : la beauté"
+
+  [NOTRE ENGAGEMENT WHATSAPP]
+  - Fond dégradé 135deg rose-fonce → mauve-fonce
+  - Padding 5rem 4rem, text-align center
+  - Icône WhatsApp SVG blanc, 56px, margin-bottom 1.5rem
+  - Titre : "Un service pensé *pour vous*"
+    Unbounded 300, blanc, clamp(1.8rem,3.5vw,3rem)
+    italique rose-doux sur "pour vous"
+  - Texte Montserrat 400, blanc opacity 0.85, 1rem, line-height 1.9, max-width 560px :
+    "Pas besoin de créer un compte ou de remplir de longs formulaires.
+    Chez Cosmetics Shop, commander est aussi simple qu'envoyer un message.
+    Choisissez vos produits, ajoutez-les au panier, et envoyez
+    votre commande directement sur WhatsApp. Nous vous répondons
+    rapidement et organisons la livraison partout au Bénin."
+  - Bouton blanc :
+    "💬 Commander sur WhatsApp maintenant"
+    → href="https://wa.me/22900000000?text=Bonjour Cosmetics Shop, je souhaite passer une commande !"
+    texte rose-fonce, Montserrat 700, border-radius 999px
+    padding 1rem 2.5rem, hover : fond rose-pale, transition 0.3s
+  - Entrée Framer Motion fadeUp
+
+  [ÉQUIPE / CONTACT RAPIDE]
+  - Fond #FDFAF8, padding 5rem 4rem
+  - Titre centré : "Nous sommes là pour vous"
+    Unbounded 300, texte
+  - Sous-titre Montserrat 400 texte-light :
+    "Une question sur un produit ? Un doute sur votre type de peau ?
+    Notre équipe vous conseille personnellement."
+  - 3 contact cards en ligne desktop :
+    Fond blanc, border-radius 16px, padding 2rem, text-align center
+    ombre légère, hover translateY(-4px)
+    Icône emoji grand dans cercle rose-pale (64px)
+    Titre : Unbounded 400, texte, 0.95rem
+    Info : Montserrat 400, texte-light, 0.85rem
+    Lien : Montserrat 600, rose-vif, 0.82rem, hover rose-fonce
+    Cards :
+      "📱" | "WhatsApp" | "Disponible Lun–Sam 8h–20h"
+        lien : "Écrire sur WhatsApp →" → wa.me/22900000000
+      "📍" | "Localisation" | "Cotonou, Bénin"
+        lien : "Voir sur la carte →" → Google Maps Cotonou
+      "📦" | "Livraison" | "Partout au Bénin"
+        lien : "En savoir plus →" → /contact
+
+  - CTA final centré :
+    Link /catalogue → "Découvrir nos produits"
+      fond rose-vif, blanc, border-radius 999px,
+      Montserrat 600, padding 1rem 2.5rem
+      hover fond rose-fonce
+
+── AJOUT DANS LA NAVBAR ──
+Ajoute "À propos" entre "Catalogue" et "Contact"
+dans les liens desktop ET dans le menu mobile.
+Lien → /a-propos
+
+── AJOUT DANS LE FOOTER ──
+Dans la colonne "Liens rapides", ajoute :
+"À propos" → /a-propos
