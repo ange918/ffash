@@ -1,0 +1,441 @@
+Crée une application Next.js 14 avec App Router, TypeScript et Tailwind CSS.
+Il s'agit du site e-commerce de "Cosmetics Shop", une boutique de
+cosmétiques spécialisée dans les soins corporels et visage au Bénin.
+
+── STACK ──
+Next.js 14 App Router
+TypeScript
+Tailwind CSS (config étendue)
+Framer Motion (animations, directive "use client")
+Zustand (état global panier, persist middleware localStorage)
+Google Fonts via next/font/google :
+  - Unbounded (weights 300, 400, 600) → titres
+  - Montserrat (weights 400, 500, 600) → textes
+Applique les fonts dans app/layout.tsx via className sur <body>
+
+── PALETTE ──
+Variables CSS dans globals.css ET tailwind.config.ts :
+  --blanc:         #FDFAF8
+  --blanc-pur:     #FFFFFF
+  --rose-pale:     #FDE8EF
+  --rose-doux:     #F4B8CB
+  --rose-vif:      #E8739A
+  --rose-fonce:    #C94F78
+  --mauve:         #C9A0C4
+  --mauve-pale:    #EDE0F0
+  --mauve-fonce:   #8A5A8A
+  --nude:          #F2DDD4
+  --nude-fonce:    #D4A899
+  --texte:         #3A2A35
+  --texte-light:   #7A6070
+  --gris-pale:     #F7F2F5
+
+Background général  : #FDFAF8
+Texte principal     : #3A2A35
+Accent primaire     : #E8739A (rose vif)
+Accent secondaire   : #C9A0C4 (mauve)
+
+── STRUCTURE APP ROUTER ──
+app/
+  layout.tsx          → layout global (Navbar + fonts)
+  page.tsx            → Home
+  catalogue/
+    page.tsx          → Catalogue avec filtres
+  panier/
+    page.tsx          → Panier
+  contact/
+    page.tsx          → Contact
+  globals.css
+
+── DONNÉES PRODUITS ──
+Crée lib/products.ts avec un tableau TypeScript de TOUS les produits suivants.
+Type Product :
+  id: number
+  nom: string
+  categorie: string   // ex: "Savons Corporels"
+  gamme?: string      // ex: "Molato", "Nila", "Collagène", "Rondeurs"
+  typePeau: string[]  // ex: ["grasse", "sèche", "mixte", "sensible", "tous"]
+  description: string // courte, générée de façon cohérente
+  prix: number        // prix fictif réaliste en FCFA (500–8000)
+  badge?: string      // ex: "Nouveau", "Bestseller", "Spécial Homme", "Bébé"
+  image: string       // chemin "/images/placeholder.jpg" pour tous
+
+Liste complète des produits à intégrer dans lib/products.ts :
+
+SAVONS CORPORELS (typePeau: ["tous"])
+  Savon Teint Marron | Savon Teint Marron Clair | Savon Teint Métissé
+  Savon Teint Caramel | Savon Teint Ébène | Savon Teint Jaune Banane
+  Savon Teint Clair | Savon Teint Blanchissant
+  Savon Bébé (badge: "Bébé", typePeau: ["sensible"])
+  Savon Boys (badge: "Spécial Homme", typePeau: ["tous"])
+
+LAITS CORPORELS (typePeau: ["tous"])
+  Lait Teint Marron | Lait Teint Marron Clair | Lait Teint Métissé
+  Lait Teint Caramel | Lait Teint Ébène | Lait Teint Jaune Banane
+  Lait Teint Clair | Lait Éclaircissant | Lait Hydratant Intense
+
+CRÈMES VISAGE
+  Crème Peau Grasse (typePeau: ["grasse"])
+  Crème Peau Sèche (typePeau: ["sèche"])
+  Crème Peau Mixte (typePeau: ["mixte"])
+  Crème Anti-Acné (typePeau: ["grasse","mixte"])
+  Crème Éclaircissante (typePeau: ["tous"])
+  Crème Réparatrice (typePeau: ["sèche","sensible"])
+
+LOTIONS VISAGE
+  Lotion Anti-Acné (typePeau: ["grasse","mixte"])
+  Lotion Éclaircissante | Lotion Hydratante (typePeau: ["sèche"])
+  Lotion Resserre-Pores (typePeau: ["grasse"])
+  Lotion Teint Uniforme (typePeau: ["tous"])
+
+GOMMAGES CORPS & VISAGE
+  Gommage Corps Éclaircissant | Gommage Corps Hydratant
+  Gommage Corps Réparateur | Gommage Visage Doux (typePeau: ["sensible"])
+  Gommage Visage Anti-Imperfections (typePeau: ["grasse","mixte"])
+
+SAVONS VISAGE
+  Savon Visage Anti-Acné (typePeau: ["grasse","mixte"])
+  Savon Visage Éclaircissant | Savon Visage Hydratant
+  Savon Visage Teint Uniforme | Savon Visage Peau Sensible (typePeau: ["sensible"])
+
+GELS DE DOUCHE (typePeau: ["tous"])
+  Gel de Douche Teint Marron | Gel de Douche Teint Marron Clair
+  Gel de Douche Teint Métissé | Gel de Douche Teint Caramel
+  Gel de Douche Teint Ébène | Gel de Douche Teint Jaune Banane
+  Gel de Douche Teint Clair | Gel de Douche Éclaircissant
+  Gel de Douche Bébé (typePeau: ["sensible"], badge: "Bébé")
+  Gel de Douche Boys (badge: "Spécial Homme")
+
+GAMMES DE TEINT (gamme: "Teint", typePeau: ["tous"])
+  Gamme Teint Ébène | Gamme Teint Marron | Gamme Teint Marron Clair
+  Gamme Teint Métissé | Gamme Teint Caramel | Gamme Teint Jaune Banane
+  Gamme Teint Clair | Gamme Teint Éclaircissant
+
+KITS LÈVRES ROSES (categorie: "Lèvres Roses")
+  Crème Lèvres Roses | Gommage Lèvres | Soin Lèvres Roses
+  Lotion Lèvres Roses | Gloss Lèvres Roses
+
+PRODUITS ANTI-VERGETURES (categorie: "Anti-Vergetures")
+  Savon Anti-Vergetures | Crème Anti-Vergetures
+  Lotion Anti-Vergetures | Sérum Anti-Vergetures
+
+PRODUITS ANTI-IMPERFECTIONS (categorie: "Anti-Imperfections")
+  Savon | Lait | Crème | Gommage | Lotion | Gel de Douche | Sérum
+  (tous préfixés "Anti-Imperfections", typePeau: ["grasse","mixte"])
+
+SAVONS MOLATO (gamme: "Molato", typePeau: ["tous"])
+  Savon Noir Molato | Savon Molato à la Tomate | Savon Molato au Lait
+  Savon Molato au Miel | Savon Molato au Beurre de Karité
+  Savon Molato au Curcuma | Savon Molato au Citron
+  Savon Molato à l'Aloe Vera
+
+GAMME AU NILA (gamme: "Nila", typePeau: ["tous"])
+  Savon Au Nila | Lait Corporel Au Nila | Crème Visage Au Nila
+  Lotion Au Nila | Gommage Corps Au Nila | Gommage Visage Au Nila
+  Gel de Douche Au Nila | Huile au Nila
+
+PRODUITS ANTI-QUINTO (gamme: "Anti-Quinto")
+  Savon | Lait | Crème | Gommage | Lotion | Gel de Douche | Huile
+  (tous préfixés "Anti-Quinto", typePeau: ["tous"])
+
+GAMME AU COLLAGÈNE (gamme: "Collagène", typePeau: ["sèche","tous"])
+  Savon au Collagène | Lait Corporel au Collagène
+  Crème Visage au Collagène | Lotion au Collagène
+  Gommage Corps au Collagène | Gommage Visage au Collagène
+  Gel de Douche au Collagène | Sérum au Collagène
+
+GAMME RONDEURS (gamme: "Rondeurs")
+  Crème Rondeurs | Lotion Rondeurs | Suppositoire Rondeurs
+  Bonbon Rondeurs | Farine Rondeurs | Sirop Rondeurs
+
+PRODUITS MINCEUR & VENTRE PLAT (categorie: "Minceur")
+  Sirop Minceur & Ventre Plat | Thé Minceur & Ventre Plat
+  Tisane Minceur & Ventre Plat
+
+── STORE ZUSTAND ──
+Crée lib/store.ts :
+  état : items: { product: Product; quantite: number }[]
+  actions : addToCart(product) | removeFromCart(id) | updateQuantite(id, n) | clearCart()
+  persist dans localStorage clé "cosmetics-cart"
+  selector : totalArticles, totalPrix (en FCFA formaté)
+
+── NAVBAR (components/Navbar.tsx, "use client") ──
+- Fond blanc, ombre légère, sticky top-0, z-50
+- Logo gauche : icône fleur SVG rose-vif + "Cosmetics Shop"
+  Unbounded 600, rose-fonce, 1rem
+- Liens centre (desktop) : Accueil · Catalogue · À propos · Contact
+  Montserrat 500, texte, 0.82rem, uppercase, letterspacing 0.1em
+  hover : rose-vif, underline animé scaleX
+- Droite :
+  · Icône panier SVG rose-fonce + badge rond rose-vif blanc (totalArticles depuis Zustand)
+    → Link vers /panier
+  · Bouton "WhatsApp" : icône SVG verte + "Commander"
+    fond rose-vif, blanc, border-radius 999px, Montserrat 600, 0.72rem
+    hover : fond rose-fonce
+- Mobile : hamburger → drawer latéral droit, fond blanc,
+  liens Unbounded 300, rose-fonce
+
+── PAGE HOME (app/page.tsx) ──
+
+  [HERO - "use client", Framer Motion]
+  - Fond : dégradé 135deg #FDE8EF → #EDE0F0
+  - Layout 2 colonnes desktop, 1 col mobile (texte en haut)
+  - Colonne texte :
+    Pré-titre : "✦ Soin · Beauté · Confiance"
+      Montserrat 500, rose-vif, 0.78rem, letterspacing 0.3em
+    Titre : "Révélez votre *beauté naturelle*"
+      Unbounded, clamp(2.2rem,5vw,4.5rem), texte
+      "*beauté naturelle*" en italic, couleur rose-fonce, display block
+    Sous-titre : "Des soins cosmétiques de qualité pour toutes les peaux —
+      corps, visage, et gammes spécialisées livrés au Bénin."
+      Montserrat 400, 1rem, texte-light, line-height 1.85
+    2 CTA :
+      · Link /catalogue → "Voir le catalogue"
+        fond rose-vif, blanc, border-radius 999px, padding 0.9rem 2rem
+        Montserrat 600, hover fond rose-fonce
+      · "Commander sur WhatsApp" → ouvre wa.me/22900000000
+        bordure 1px rose-vif, rose-vif, border-radius 999px
+        icône WhatsApp SVG vert, hover fond rose-pale
+  - Colonne visuelle :
+    Grand cercle fond blanc, ombre 0 20px 60px rgba(232,115,154,0.15)
+    Icône SVG flacon cosmétique rose-vif centré (80px)
+    3 petits badges flottants (animation CSS keyframes float) :
+      "💧 Hydratant" | "✨ Éclaircissant" | "🌿 Naturel"
+      fond blanc, Montserrat 500, texte, 0.72rem, border-radius 999px,
+      ombre légère, positions absolues autour du cercle
+  - Entrée Framer Motion : staggered fadeUp (y:40→0, opacity:0→1, delay+0.12s)
+
+  [STATS STRIP]
+  - Fond blanc, bordure top/bottom 1px #FDE8EF, padding 2rem 4rem
+  - 4 colonnes flex, séparées par dividers 1px #FDE8EF
+  - Chiffre : Unbounded 600, 2.2rem, rose-fonce
+  - Label : Montserrat 400, 0.78rem, texte-light
+  - Données :
+    "100+" / "Produits disponibles"
+    "12+" / "Gammes spécialisées"
+    "Toutes" / "Peaux sublimées"
+    "🇧🇯" / "Livraison au Bénin"
+
+  [CATÉGORIES EN VEDETTE]
+  - Fond #FDFAF8, padding 5rem 4rem
+  - Titre : "Nos Catégories" Unbounded 300, texte, clamp(1.8rem,3vw,2.5rem)
+  - Sous-titre Montserrat 400 texte-light
+  - Grille 3 col desktop, 2 tablette, 1 mobile, gap 1.5rem
+  - 9 cards (une par grande catégorie) :
+    Fond blanc, border-radius 20px, padding 2rem
+    ombre : 0 4px 20px rgba(232,115,154,0.08)
+    hover : translateY(-6px), ombre renforcée, transition 0.3s
+    Icône emoji ou SVG (grand, centré, 48px)
+    Titre : Unbounded 400, 1rem, texte, margin-top 1rem
+    Nombre produits : Montserrat 400, rose-vif, 0.8rem
+    Lien → /catalogue?categorie=XXX
+    Cards :
+      🧼 Savons Corporels (10 produits)
+      🥛 Laits Corporels (9 produits)
+      💆 Crèmes & Lotions Visage (11 produits)
+      🚿 Gels de Douche (10 produits)
+      ✨ Gommages (5 produits)
+      💋 Kits Lèvres Roses (5 produits)
+      🌿 Gammes Spéciales (Molato, Nila, Collagène...)
+      💪 Anti-Imperfections & Vergetures
+      🍵 Minceur & Rondeurs
+
+  [BESTSELLERS]
+  - Fond #FDE8EF, padding 5rem 4rem
+  - Titre : "Nos Bestsellers" + badge "✦ Les plus aimés"
+  - Affiche 4 ProductCard (voir composant) en grille
+  - Prendre les 4 premiers produits avec badge "Bestseller"
+  - Bouton "Voir tout le catalogue" → /catalogue
+
+  [WHATSAPP BANNER]
+  - Fond dégradé 135deg rose-fonce → mauve-fonce
+  - Texte blanc centré :
+    Titre Unbounded 400 : "Commandez facilement sur WhatsApp"
+    Sous-titre Montserrat 400 : "Contactez-nous directement pour passer votre commande.
+      Livraison rapide partout au Bénin."
+  - Bouton blanc : icône WhatsApp vert + "Ouvrir WhatsApp"
+    → href="https://wa.me/22900000000?text=Bonjour, je voudrais commander..."
+    texte rose-fonce, Montserrat 600, border-radius 999px
+
+── COMPOSANT ProductCard (components/ProductCard.tsx, "use client") ──
+- Props : product: Product
+- Fond blanc, border-radius 16px, overflow hidden
+- Ombre : 0 4px 16px rgba(232,115,154,0.08)
+- hover : translateY(-4px), ombre renforcée
+- Zone image : fond dégradé #FDE8EF→#EDE0F0, hauteur 200px
+  Icône SVG cosmétique centré rose-doux (48px)
+  Badge (si product.badge) : position absolue top-left,
+    fond rose-vif, blanc, Montserrat 600, 0.65rem, border-radius 999px, padding 0.25rem 0.7rem
+- Zone info : padding 1.2rem
+  Catégorie : Montserrat 500, mauve-fonce, 0.68rem, uppercase, letterspacing 0.15em
+  Nom : Unbounded 400, texte, 0.95rem, line-height 1.3, margin 0.4rem 0
+  Prix : Unbounded 600, rose-fonce, 1.1rem → "{prix} FCFA"
+  2 boutons :
+    · "Ajouter au panier" → appelle addToCart(product) depuis Zustand
+      fond rose-vif, blanc, border-radius 999px, Montserrat 600, 0.72rem, width 100%
+      hover fond rose-fonce
+    · "WhatsApp" → icône SVG + ouvre WhatsApp avec message pré-rempli :
+      "Bonjour, je voudrais commander : {product.nom} à {product.prix} FCFA"
+      bordure rose-vif, rose-vif, border-radius 999px, width 100%
+      hover fond rose-pale
+
+── PAGE CATALOGUE (app/catalogue/page.tsx, "use client") ──
+- Fond #FDFAF8
+- Header section : titre "Notre Catalogue" Unbounded 300 + compteur produits filtrés
+- Layout : sidebar filtres gauche (280px) + grille produits droite
+  Sur mobile : filtres en accordéon collapsible au-dessus de la grille
+
+FILTRES (état local useState) :
+  1. Recherche texte (input rose, search icon)
+  2. Filtre par TYPE DE PEAU (chips sélectionnables) :
+     Toutes | Peau Grasse | Peau Sèche | Peau Mixte | Peau Sensible
+     → filtre sur product.typePeau[]
+  3. Filtre par CATÉGORIE (checkboxes) :
+     Savons Corporels | Laits Corporels | Crèmes Visage | Lotions Visage
+     Gommages | Savons Visage | Gels de Douche | Gammes de Teint
+     Lèvres Roses | Anti-Vergetures | Anti-Imperfections | Molato
+     Nila | Anti-Quinto | Collagène | Rondeurs | Minceur
+  4. Filtre par GAMME (chips) :
+     Toutes | Molato | Nila | Anti-Quinto | Collagène | Rondeurs | Teint
+  5. Filtre PRIX (range slider) : 0 → 10000 FCFA
+  6. Bouton "Réinitialiser les filtres" rose-pale, rose-fonce
+
+STYLE FILTRES SIDEBAR :
+  Fond blanc, border-radius 16px, padding 1.5rem
+  ombre légère, sticky top-24
+  Titre sidebar : Unbounded 400, texte, 1rem + icône filtre SVG
+  Séparateurs 1px #FDE8EF entre filtres
+  Chips type peau : border-radius 999px, bordure 1px rose-doux
+    actif → fond rose-vif, blanc
+  Checkboxes custom : carré 16px border rose-doux
+    coché → fond rose-vif, check blanc SVG
+
+GRILLE PRODUITS :
+  3 colonnes desktop, 2 tablette, 1 mobile
+  Affiche ProductCard pour chaque produit filtré
+  Si aucun résultat : illustration vide + "Aucun produit trouvé pour ces filtres"
+    bouton "Réinitialiser"
+  Pagination : 12 produits par page, boutons Précédent/Suivant
+    + indicateur "Page X sur Y" Montserrat 400 texte-light
+
+── PAGE PANIER (app/panier/page.tsx, "use client") ──
+- Layout 2 colonnes desktop : liste articles (65%) | récapitulatif (35%)
+- Titre : "Mon Panier" Unbounded 300 + badge nombre articles rose-vif
+
+LISTE ARTICLES :
+  Si panier vide : illustration SVG panier vide + "Votre panier est vide"
+    + bouton Link /catalogue
+  Chaque ligne article : fond blanc, border-radius 12px, padding 1.2rem
+    ombre légère, flex space-between, margin-bottom 1rem
+    Zone image : carré 80px fond rose-pale, icône SVG
+    Nom : Unbounded 400, texte, 0.95rem
+    Catégorie : Montserrat 400, texte-light, 0.78rem
+    Prix unitaire : rose-fonce, Montserrat 500
+    Contrôle quantité : boutons "-" "+" entourés, quantite au centre
+      Montserrat 600, fond rose-pale, border-radius 8px
+    Prix total ligne : Unbounded 600, rose-fonce, 1.1rem
+    Bouton supprimer : icône SVG croix rose-vif, hover rouge
+
+RÉCAPITULATIF :
+  Fond blanc, border-radius 16px, padding 2rem, sticky top-24
+  Titre : "Récapitulatif" Unbounded 400, texte
+  Lignes : Sous-total | Livraison (à confirmer) | Total
+    Montserrat 400/600, séparateurs #FDE8EF
+  Total : Unbounded 700, rose-fonce, 1.3rem
+  2 boutons full-width :
+    · "Commander sur WhatsApp" (principal) :
+      Génère message WhatsApp avec TOUS les articles :
+      "Bonjour Cosmetics Shop ! Je voudrais commander :\n
+       {articles.map: - {nom} x{quantite} = {prix} FCFA\n}
+       Total : {totalPrix} FCFA\nMerci !"
+      → href wa.me/22900000000?text=...encodé
+      fond rose-vif, blanc, border-radius 999px, Montserrat 600
+      icône WhatsApp SVG vert
+      hover fond rose-fonce
+    · "Vider le panier" → clearCart()
+      bordure 1px rose-doux, texte-light, border-radius 999px
+
+── PAGE CONTACT (app/contact/page.tsx) ──
+- Layout 2 colonnes desktop
+- Colonne gauche :
+  Titre "Contactez-nous" Unbounded 300
+  Sous-titre Montserrat 400 texte-light
+  3 info cards (fond rose-pale, border-radius 12px, padding 1.2rem) :
+    📍 "Localisation" / "Cotonou, Bénin"
+    📱 "WhatsApp" / "+229 00 00 00 00"
+    🕐 "Disponibilité" / "Lun–Sam, 8h–20h"
+  Grande carte Google Maps placeholder :
+    fond #EDE0F0, border-radius 16px, hauteur 250px
+    texte centré "📍 Cosmetics Shop — Cotonou, Bénin"
+    Montserrat 500 texte-light
+
+- Colonne droite : formulaire contact
+  Champs : Nom · Email · Téléphone · Sujet (select) · Message
+  Style inputs : fond blanc, bordure 1px #FDE8EF, border-radius 10px
+    focus → bordure rose-vif, ombre 0 0 0 3px rgba(232,115,154,0.15)
+  Select sujet : "Commande" | "Informations produit" | "Livraison" | "Autre"
+  Bouton "Envoyer" fond rose-vif, blanc, border-radius 999px, full-width
+    hover fond rose-fonce
+
+── FOOTER ──
+- Fond #3A2A35 (texte sombre inversé)
+- Couleur texte : #FDE8EF
+- 4 colonnes desktop :
+  Col 1 : Logo + tagline "Beauté naturelle pour toutes les peaux · Bénin"
+    Montserrat 400, rose-doux, 0.82rem
+  Col 2 : "Liens rapides" — Accueil · Catalogue · Panier · Contact
+  Col 3 : "Catégories" — 5 catégories phares avec liens /catalogue?categorie=
+  Col 4 : "Nous contacter"
+    Bouton WhatsApp rose-vif
+    Icônes réseaux sociaux (Instagram · Facebook · TikTok) SVG rose-doux
+- Bordure top 1px rgba(244,184,203,0.2)
+- Copyright : "© 2025 Cosmetics Shop · Tous droits réservés · Cotonou, Bénin"
+  Montserrat 400, rose-doux opacity 0.5, 0.75rem, text-center
+
+── ANIMATIONS GLOBALES ──
+- whileInView : { opacity:0, y:40 } → { opacity:1, y:0 }
+  transition: { duration:0.65, ease:[0.25,0.1,0.25,1] }
+- staggerChildren: 0.1s sur les grilles
+- hover ProductCard : whileHover scale 1.02, transition 0.25s
+- Page transitions : AnimatePresence dans layout.tsx,
+  fade simple opacity 0→1, duration 0.4s
+
+── ANIMATIONS CSS (globals.css) ──
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+Appliqué sur les badges flottants du Hero avec delays différents.
+
+── FICHIERS À CRÉER ──
+app/
+  layout.tsx
+  page.tsx
+  catalogue/page.tsx
+  panier/page.tsx
+  contact/page.tsx
+  globals.css
+components/
+  Navbar.tsx
+  Footer.tsx
+  ProductCard.tsx
+  Hero.tsx
+  CategoryCard.tsx
+  FilterSidebar.tsx
+  CartItem.tsx
+  WhatsAppBanner.tsx
+lib/
+  products.ts    ← TOUS les produits listés ci-dessus
+  store.ts       ← Zustand panier
+tailwind.config.ts
+next.config.ts
+
+── RÈGLES TECHNIQUES ──
+- Toutes les pages/composants interactifs → "use client"
+- Images : utiliser Next.js <Image> avec width/height explicites
+  ou unoptimized pour les placeholders
+- Pas de bibliothèque UI externe (pas Shadcn, MUI, etc.)
+- next.config.ts : pas de config spéciale requise
+- Vercel-ready : aucune dépendance serveur, pas d'API route requise
+- Le numéro WhatsApp "+22900000000" doit être défini dans
+  une constante lib/constants.ts facilement modifiable
