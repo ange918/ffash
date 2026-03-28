@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Star, Truck, Shield, Sparkles } from "lucide-react";
+import { ArrowRight, Star, Truck, Shield, Sparkles, Droplets, Leaf } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import ProductCard from "@/components/ProductCard";
 import { products } from "@/lib/products";
@@ -105,7 +105,7 @@ export default function HomePage() {
 
             {/* Trust badges */}
             <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-4 mt-8">
-              {["✓ Livraison au Bénin", "✓ Qualité garantie", "✓ Paiement à la livraison"].map((b) => (
+              {["✓ Livraison partout", "✓ Qualité garantie", "✓ Produits certifiés"].map((b) => (
                 <span key={b} style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#C94F78", fontSize: "0.75rem", backgroundColor: "rgba(255,255,255,0.8)", borderRadius: "999px", padding: "0.3rem 0.9rem", border: "1px solid rgba(232,115,154,0.2)" }}>
                   {b}
                 </span>
@@ -119,14 +119,14 @@ export default function HomePage() {
               <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", boxShadow: "0 20px 60px rgba(232,115,154,0.2)", position: "relative" }}>
                 <Image src="/images/product-placeholder.png" alt="Produit vedette" fill className="object-cover" unoptimized />
               </div>
-              <span className="animate-float absolute -top-4 -right-6 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
-                💧 Hydratant
+              <span className="animate-float absolute -top-4 -right-6 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
+                <Droplets size={13} color="#E8739A" /> Hydratant
               </span>
-              <span className="animate-float-delay-1 absolute -left-8 top-1/3 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
-                ✨ Éclaircissant
+              <span className="animate-float-delay-1 absolute -left-8 top-1/3 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
+                <Sparkles size={13} color="#E8739A" /> Éclaircissant
               </span>
-              <span className="animate-float-delay-2 absolute -bottom-4 right-4 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
-                🌿 Naturel
+              <span className="animate-float-delay-2 absolute -bottom-4 right-4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
+                <Leaf size={13} color="#E8739A" /> Naturel
               </span>
             </div>
           </motion.div>
