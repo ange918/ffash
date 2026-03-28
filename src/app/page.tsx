@@ -118,8 +118,8 @@ export default function HomePage() {
           {/* Floating badges */}
           <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUp} className="hidden md:flex items-center justify-center relative" style={{ minHeight: "400px" }}>
             <div className="relative" style={{ width: "340px", height: "340px" }}>
-              <div style={{ width: "100%", height: "100%", borderRadius: "50%", background: "rgba(255,255,255,0.6)", backdropFilter: "blur(12px)", boxShadow: "0 20px 60px rgba(232,115,154,0.2)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Image src="/images/product-placeholder.png" alt="Produit vedette" width={220} height={220} className="object-contain" unoptimized />
+              <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", boxShadow: "0 20px 60px rgba(232,115,154,0.2)", position: "relative" }}>
+                <Image src="/images/product-placeholder.png" alt="Produit vedette" fill className="object-cover" unoptimized />
               </div>
               <span className="animate-float absolute -top-4 -right-6 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#3A2A35", fontSize: "0.72rem" }}>
                 💧 Hydratant
