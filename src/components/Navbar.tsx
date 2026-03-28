@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { ShoppingBag, Menu, X, Flower } from "lucide-react";
 import { useCartStore } from "@/lib/store";
 
 export default function Navbar() {
@@ -24,12 +25,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M14 2C14 2 10 6 10 10C10 12.2 11.8 14 14 14C16.2 14 18 12.2 18 10C18 6 14 2 14 2Z" fill="#E8739A"/>
-              <path d="M14 14C14 14 6 13 4 17C3 19 4.5 21.5 7 22C9.5 22.5 12 21 14 19" fill="#C94F78"/>
-              <path d="M14 14C14 14 22 13 24 17C25 19 23.5 21.5 21 22C18.5 22.5 16 21 14 19" fill="#C9A0C4"/>
-              <circle cx="14" cy="14" r="2" fill="#C94F78"/>
-            </svg>
+            <Flower size={26} color="#E8739A" strokeWidth={1.5} />
             <span style={{ fontFamily: "var(--font-unbounded)", fontWeight: 600, color: "#C94F78", fontSize: "1rem", letterSpacing: "0.02em" }}>
               Cosmetics Shop
             </span>
@@ -54,11 +50,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             {/* Panier */}
             <Link href="/panier" className="relative p-2">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C94F78" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <path d="M16 10a4 4 0 0 1-8 0"/>
-              </svg>
+              <ShoppingBag size={22} color="#C94F78" strokeWidth={1.8} />
               {totalArticles > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full flex items-center justify-center text-white" style={{ backgroundColor: "#E8739A", fontSize: "0.62rem", fontFamily: "var(--font-montserrat)", fontWeight: 600 }}>
                   {totalArticles}
@@ -85,11 +77,7 @@ export default function Navbar() {
 
             {/* Hamburger */}
             <button className="md:hidden p-2" onClick={() => setMenuOpen(true)} aria-label="Menu">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C94F78" strokeWidth="2" strokeLinecap="round">
-                <line x1="3" y1="6" x2="21" y2="6"/>
-                <line x1="3" y1="12" x2="21" y2="12"/>
-                <line x1="3" y1="18" x2="21" y2="18"/>
-              </svg>
+              <Menu size={22} color="#C94F78" />
             </button>
           </div>
         </div>
@@ -101,11 +89,12 @@ export default function Navbar() {
           <div className="flex-1 bg-black/30" onClick={() => setMenuOpen(false)} />
           <div className="w-72 bg-white h-full flex flex-col p-8 shadow-2xl">
             <div className="flex justify-between items-center mb-10">
-              <span style={{ fontFamily: "var(--font-unbounded)", fontWeight: 600, color: "#C94F78", fontSize: "0.9rem" }}>Menu</span>
+              <div className="flex items-center gap-2">
+                <Flower size={20} color="#E8739A" strokeWidth={1.5} />
+                <span style={{ fontFamily: "var(--font-unbounded)", fontWeight: 600, color: "#C94F78", fontSize: "0.9rem" }}>Menu</span>
+              </div>
               <button onClick={() => setMenuOpen(false)}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C94F78" strokeWidth="2" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-                </svg>
+                <X size={22} color="#C94F78" />
               </button>
             </div>
             <nav className="flex flex-col gap-6">
