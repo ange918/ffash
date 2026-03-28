@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Flower, MapPin, Phone, Clock } from "lucide-react";
 
