@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { products, categories, gammes, Product } from "@/lib/products";
 import ProductCard from "@/components/ProductCard";
+import { Check, SlidersHorizontal } from "lucide-react";
 
 const typePeauOptions = [
   { label: "Toutes", value: "tous" },
@@ -129,9 +130,7 @@ function CatalogueContent() {
                 }}
               >
                 {selectedCategories.includes(c) && (
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  <Check size={10} stroke="white" strokeWidth={2.5} />
                 )}
               </div>
               <span onClick={() => toggleCategorie(c)} style={{ fontFamily: "var(--font-montserrat)", fontSize: "0.78rem", color: "#3A2A35", cursor: "pointer" }}>{c}</span>
@@ -202,9 +201,7 @@ function CatalogueContent() {
           onClick={() => setFiltersOpen(!filtersOpen)}
           style={{ border: "1px solid #E8739A", color: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600, fontSize: "0.8rem", background: "none", cursor: "pointer" }}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <line x1="4" y1="6" x2="20" y2="6"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="12" y1="18" x2="12" y2="18"/>
-          </svg>
+          <SlidersHorizontal size={16} />
           Filtres {selectedCategories.length > 0 && `(${selectedCategories.length})`}
         </button>
 
