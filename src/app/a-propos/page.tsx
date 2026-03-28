@@ -66,30 +66,30 @@ export default function AProposPage() {
   return (
     <>
       {/* HERO */}
-      <section style={{ background: "linear-gradient(135deg, #FDE8EF, #EDE0F0)", padding: "7rem 2rem", textAlign: "center" }}>
+      <section className="py-16 sm:py-24 px-4 sm:px-8 text-center" style={{ background: "linear-gradient(135deg, #FDE8EF, #EDE0F0)" }}>
         <div className="max-w-3xl mx-auto">
           <motion.p custom={0} initial="hidden" animate="visible" variants={fadeUp}
             style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#E8739A", fontSize: "0.78rem", letterSpacing: "0.3em", marginBottom: "1.2rem" }}>
             ✦ Notre Histoire
           </motion.p>
           <motion.h1 custom={1} initial="hidden" animate="visible" variants={fadeUp}
-            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, fontSize: "clamp(2.5rem,5vw,4rem)", color: "#3A2A35", lineHeight: 1.1, marginBottom: "1.5rem" }}>
+            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, fontSize: "clamp(2rem,5vw,4rem)", color: "#3A2A35", lineHeight: 1.1, marginBottom: "1.5rem" }}>
             Beauté pensée{" "}
             <em style={{ fontWeight: 600, color: "#C94F78", fontStyle: "italic" }}>pour vous</em>
           </motion.h1>
           <motion.p custom={2} initial="hidden" animate="visible" variants={fadeUp}
-            style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "1rem", lineHeight: 1.9, maxWidth: "600px", margin: "0 auto" }}>
+            style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.9, maxWidth: "600px", margin: "0 auto" }}>
             Cosmetics Shop, c'est une passion pour le soin, la beauté naturelle et la confiance en soi — au cœur du Bénin.
           </motion.p>
         </div>
       </section>
 
       {/* NOTRE HISTOIRE */}
-      <section style={{ backgroundColor: "white", padding: "6rem 2rem" }}>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <section className="py-12 sm:py-20 px-4 sm:px-8" style={{ backgroundColor: "white" }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }} viewport={{ once: true }}>
             <p style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#E8739A", fontSize: "0.68rem", letterSpacing: "0.4em", textTransform: "uppercase", marginBottom: "1rem" }}>— Notre Histoire</p>
-            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, fontSize: "clamp(1.8rem,3.5vw,3rem)", color: "#3A2A35", lineHeight: 1.15, marginBottom: "1.5rem" }}>
+            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, fontSize: "clamp(1.5rem,3.5vw,3rem)", color: "#3A2A35", lineHeight: 1.15, marginBottom: "1.5rem" }}>
               Une boutique née <em style={{ color: "#C94F78", fontStyle: "italic" }}>de la passion</em>
             </h2>
             <div style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.95rem", lineHeight: 1.95 }} className="flex flex-col gap-4">
@@ -99,8 +99,8 @@ export default function AProposPage() {
             </div>
           </motion.div>
 
-          {/* Visuel */}
-          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }} className="flex items-center justify-center relative" style={{ minHeight: "400px" }}>
+          {/* Visuel — masqué sur mobile, visible sur lg+ */}
+          <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }} className="hidden lg:flex items-center justify-center relative" style={{ minHeight: "400px" }}>
             <div className="relative" style={{ width: "360px", height: "360px" }}>
               <div style={{ width: "360px", height: "360px", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
                 <Image src="/images/product-placeholder.png" alt="Cosmetics Shop" fill className="object-cover" unoptimized />
@@ -115,22 +115,22 @@ export default function AProposPage() {
       </section>
 
       {/* NOS VALEURS */}
-      <section style={{ backgroundColor: "#FDE8EF", padding: "6rem 2rem" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-8" style={{ backgroundColor: "#FDE8EF" }}>
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
-            className="text-center mb-12"
-            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.8rem,3vw,2.5rem)" }}
+            className="text-center mb-8 sm:mb-12"
+            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.5rem,3vw,2.5rem)" }}
           >
             Nos Valeurs
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {valeurs.map((v, i) => (
               <motion.div
                 key={v.titre}
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.08 }} viewport={{ once: true }}
-                className="text-center p-10 transition-all duration-300"
+                className="text-center p-6 sm:p-10 transition-all duration-300"
                 style={{ backgroundColor: "white", borderRadius: "20px", boxShadow: "0 4px 20px rgba(232,115,154,0.08)" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
@@ -147,46 +147,61 @@ export default function AProposPage() {
       </section>
 
       {/* CHIFFRES */}
-      <section style={{ backgroundColor: "white", padding: "5rem 2rem" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-8" style={{ backgroundColor: "white" }}>
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}
-            className="text-center mb-12"
-            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.8rem,3vw,2.5rem)" }}
+            className="text-center mb-8 sm:mb-12"
+            style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.5rem,3vw,2.5rem)" }}
           >
             Cosmetics Shop en chiffres
           </motion.h2>
           <div className="grid grid-cols-2 md:grid-cols-4">
-            {chiffres.map((c, i) => (
-              <div key={c.label} className="text-center py-12" style={{ borderRight: i < 3 ? "1px solid #FDE8EF" : "none" }}>
-                <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 700, color: "#C94F78", fontSize: "clamp(2.5rem,5vw,4rem)" }}>
-                  <AnimatedCount target={c.value} suffix={c.suffix} />
-                </p>
-                <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.82rem", letterSpacing: "0.1em", marginTop: "0.5rem" }}>{c.label}</p>
-              </div>
-            ))}
+            {chiffres.map((c, i) => {
+              const rightOnMobile = i % 2 === 0;
+              const rightOnDesktop = i < 3;
+              const bottomOnMobile = i < 2;
+              return (
+                <div
+                  key={c.label}
+                  className={[
+                    "text-center py-8 sm:py-12",
+                    rightOnMobile ? "border-r" : "",
+                    !rightOnMobile && rightOnDesktop ? "md:border-r" : "",
+                    bottomOnMobile ? "border-b md:border-b-0" : "",
+                    i === 3 ? "md:border-r-0" : "",
+                  ].join(" ")}
+                  style={{ borderColor: "#FDE8EF" }}
+                >
+                  <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 700, color: "#C94F78", fontSize: "clamp(2rem,5vw,4rem)" }}>
+                    <AnimatedCount target={c.value} suffix={c.suffix} />
+                  </p>
+                  <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.78rem", letterSpacing: "0.1em", marginTop: "0.5rem" }}>{c.label}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ENGAGEMENT WHATSAPP */}
-      <section style={{ background: "linear-gradient(135deg, #C94F78, #8A5A8A)", padding: "5rem 2rem", textAlign: "center" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-8 text-center" style={{ background: "linear-gradient(135deg, #C94F78, #8A5A8A)" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.65 }} viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
           <FaWhatsapp size={56} color="white" style={{ marginBottom: "1.5rem", display: "inline-block" }} />
-          <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "white", fontSize: "clamp(1.8rem,3.5vw,3rem)", marginBottom: "1rem" }}>
+          <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "white", fontSize: "clamp(1.5rem,3.5vw,3rem)", marginBottom: "1rem" }}>
             Un service pensé <em style={{ fontStyle: "italic", color: "#F4B8CB" }}>pour vous</em>
           </h2>
-          <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "1rem", lineHeight: 1.9, maxWidth: "560px", margin: "0 auto 2rem" }}>
+          <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.9, maxWidth: "560px", margin: "0 auto 2rem" }}>
             Pas besoin de créer un compte ou de remplir de longs formulaires. Chez Cosmetics Shop, commander est aussi simple qu'envoyer un message. Choisissez vos produits, ajoutez-les au panier, et envoyez votre commande directement sur WhatsApp. Nous vous répondons rapidement et organisons la livraison partout.
           </p>
           <a
             href="https://wa.me/22940696034?text=Bonjour Cosmetics Shop, je souhaite passer une commande !"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 transition-colors duration-200"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 transition-colors duration-200"
             style={{ backgroundColor: "white", color: "#C94F78", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 700 }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#FDE8EF")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "white")}
@@ -197,18 +212,18 @@ export default function AProposPage() {
       </section>
 
       {/* ÉQUIPE / CONTACT RAPIDE */}
-      <section style={{ backgroundColor: "#FDFAF8", padding: "5rem 2rem" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-8" style={{ backgroundColor: "#FDFAF8" }}>
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-12">
-            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.6rem,3vw,2.2rem)", marginBottom: "0.75rem" }}>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }} className="text-center mb-8 sm:mb-12">
+            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.4rem,3vw,2.2rem)", marginBottom: "0.75rem" }}>
               Nous sommes là pour vous
             </h2>
-            <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.9rem" }}>
+            <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "clamp(0.85rem,2vw,0.9rem)" }}>
               Une question sur un produit ? Un doute sur votre type de peau ? Notre équipe vous conseille personnellement.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {[
               { icon: <FaWhatsapp size={28} color="#E8739A" />, titre: "WhatsApp", info: "Disponible Lun–Sam 8h–20h", lien: "Écrire sur WhatsApp →", href: "https://wa.me/22940696034" },
               { icon: <MapPin size={28} color="#E8739A" />, titre: "Localisation", info: "Cotonou, Bénin", lien: "Voir sur la carte →", href: "https://maps.google.com/?q=Cotonou+Bénin" },
@@ -218,7 +233,7 @@ export default function AProposPage() {
                 key={c.titre}
                 initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: i * 0.1 }} viewport={{ once: true }}
-                className="text-center p-8 transition-all duration-300"
+                className="text-center p-6 sm:p-8 transition-all duration-300"
                 style={{ backgroundColor: "white", borderRadius: "16px", boxShadow: "0 4px 16px rgba(232,115,154,0.08)" }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
@@ -229,8 +244,7 @@ export default function AProposPage() {
                 <h3 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.95rem", marginBottom: "0.4rem" }}>{c.titre}</h3>
                 <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.85rem", marginBottom: "0.75rem" }}>{c.info}</p>
                 <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
-                  style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#E8739A", fontSize: "0.82rem" }}
-                  className="hover:text-rose-fonce transition-colors">
+                  style={{ fontFamily: "var(--font-montserrat)", fontWeight: 600, color: "#E8739A", fontSize: "0.82rem" }}>
                   {c.lien}
                 </a>
               </motion.div>
@@ -240,7 +254,7 @@ export default function AProposPage() {
           <div className="flex justify-center">
             <Link
               href="/catalogue"
-              className="px-8 py-4 text-white transition-colors duration-200"
+              className="px-6 sm:px-8 py-3.5 sm:py-4 text-white transition-colors duration-200"
               style={{ backgroundColor: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600 }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#C94F78")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#E8739A")}

@@ -183,7 +183,7 @@ function CatalogueContent() {
   );
 
   return (
-    <div style={{ backgroundColor: "#FDFAF8", minHeight: "100vh", padding: "3rem 1.5rem" }}>
+    <div className="px-4 sm:px-6 py-8 sm:py-12" style={{ backgroundColor: "#FDFAF8", minHeight: "100vh" }}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">

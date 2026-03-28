@@ -14,7 +14,7 @@ export default function ContactPage() {
     window.open(`https://wa.me/22940696034?text=${text}`, "_blank");
   };
 
-  const inputStyle = {
+  const inputStyle: React.CSSProperties = {
     width: "100%",
     padding: "0.85rem 1rem",
     border: "1px solid #FDE8EF",
@@ -31,29 +31,33 @@ export default function ContactPage() {
       icon: <FaWhatsapp size={22} color="#E8739A" />,
       label: "WhatsApp",
       info: "+229 40 69 60 34",
+      href: "https://wa.me/22940696034",
     },
     {
       icon: <Mail size={22} color="#E8739A" />,
       label: "Email",
       info: "cosmeticsshop373@gmail.com",
+      href: "mailto:cosmeticsshop373@gmail.com",
     },
     {
       icon: <MapPin size={22} color="#E8739A" />,
       label: "Localisation",
       info: "Cotonou, Bénin",
+      href: "https://maps.google.com/?q=Cotonou+Bénin",
     },
     {
       icon: <Clock size={22} color="#E8739A" />,
       label: "Disponibilité",
       info: "Lun–Sam, 8h–20h",
+      href: null,
     },
   ];
 
   return (
-    <div style={{ backgroundColor: "#FDFAF8", minHeight: "100vh", padding: "4rem 1.5rem" }}>
+    <div className="px-4 sm:px-6 py-10 sm:py-16" style={{ backgroundColor: "#FDFAF8", minHeight: "100vh" }}>
       <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-12">
-          <h1 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(2rem,4vw,3rem)", marginBottom: "0.5rem" }}>
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-8 sm:mb-12">
+          <h1 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.8rem,4vw,3rem)", marginBottom: "0.5rem" }}>
             Contactez-nous
           </h1>
           <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070" }}>
@@ -61,18 +65,34 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Colonne gauche */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <div className="flex flex-col gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 mb-6 sm:mb-8">
               {contactItems.map((c) => (
-                <div key={c.label} className="flex items-center gap-4" style={{ backgroundColor: "#FDE8EF", borderRadius: "12px", padding: "1.2rem" }}>
+                <div
+                  key={c.label}
+                  className="flex items-center gap-4"
+                  style={{ backgroundColor: "#FDE8EF", borderRadius: "12px", padding: "1rem 1.2rem" }}
+                >
                   <div style={{ width: "44px", height: "44px", backgroundColor: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {c.icon}
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.88rem" }}>{c.label}</p>
-                    <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.82rem" }}>{c.info}</p>
+                    {c.href ? (
+                      <a
+                        href={c.href}
+                        target={c.href.startsWith("http") ? "_blank" : undefined}
+                        rel="noopener noreferrer"
+                        className="block truncate"
+                        style={{ fontFamily: "var(--font-montserrat)", color: "#E8739A", fontSize: "0.78rem", fontWeight: 500 }}
+                      >
+                        {c.info}
+                      </a>
+                    ) : (
+                      <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.78rem" }}>{c.info}</p>
+                    )}
                   </div>
                 </div>
               ))}
@@ -80,8 +100,8 @@ export default function ContactPage() {
 
             {/* Map placeholder */}
             <div
-              className="flex items-center justify-center"
-              style={{ backgroundColor: "#EDE0F0", borderRadius: "16px", height: "200px" }}
+              className="hidden sm:flex items-center justify-center"
+              style={{ backgroundColor: "#EDE0F0", borderRadius: "16px", height: "180px" }}
             >
               <div className="text-center flex flex-col items-center gap-2">
                 <MapPin size={28} color="#C94F78" />
@@ -94,18 +114,32 @@ export default function ContactPage() {
 
           {/* Colonne droite - Formulaire */}
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-              <div>
-                <label style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Nom complet</label>
-                <input
-                  type="text"
-                  value={form.nom}
-                  onChange={(e) => setForm({ ...form, nom: e.target.value })}
-                  placeholder="Votre nom"
-                  style={inputStyle}
-                  onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
-                  onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}
-                />
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+                <div>
+                  <label style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Nom complet</label>
+                  <input
+                    type="text"
+                    value={form.nom}
+                    onChange={(e) => setForm({ ...form, nom: e.target.value })}
+                    placeholder="Votre nom"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Téléphone</label>
+                  <input
+                    type="tel"
+                    value={form.telephone}
+                    onChange={(e) => setForm({ ...form, telephone: e.target.value })}
+                    placeholder="+229 40 69 60 34"
+                    style={inputStyle}
+                    onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
+                    onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}
+                  />
+                </div>
               </div>
               <div>
                 <label style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Email</label>
@@ -114,18 +148,6 @@ export default function ContactPage() {
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   placeholder="votre@email.com"
-                  style={inputStyle}
-                  onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
-                  onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}
-                />
-              </div>
-              <div>
-                <label style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.82rem", display: "block", marginBottom: "0.4rem" }}>Téléphone</label>
-                <input
-                  type="tel"
-                  value={form.telephone}
-                  onChange={(e) => setForm({ ...form, telephone: e.target.value })}
-                  placeholder="+229 40 69 60 34"
                   style={inputStyle}
                   onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}
@@ -160,11 +182,12 @@ export default function ContactPage() {
               </div>
               <button
                 type="submit"
-                className="w-full py-3.5 text-white transition-colors duration-200"
+                className="w-full py-3.5 text-white transition-colors duration-200 flex items-center justify-center gap-2"
                 style={{ backgroundColor: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600, border: "none", cursor: "pointer", fontSize: "0.95rem" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#C94F78")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.backgroundColor = "#E8739A")}
               >
+                <FaWhatsapp size={18} color="#25D366" />
                 Envoyer via WhatsApp
               </button>
             </form>

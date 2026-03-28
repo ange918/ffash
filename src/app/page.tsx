@@ -43,7 +43,6 @@ export default function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden" style={{ minHeight: "90vh" }}>
-        {/* Background image */}
         <div className="absolute inset-0">
           <Image
             src="/images/hero-bg.png"
@@ -56,7 +55,7 @@ export default function HomePage() {
           <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(253,232,239,0.92) 0%, rgba(237,224,240,0.85) 50%, rgba(253,232,239,0.7) 100%)" }} />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-6 py-16 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Text */}
           <div>
             <motion.p
@@ -67,22 +66,22 @@ export default function HomePage() {
             </motion.p>
             <motion.h1
               custom={1} initial="hidden" animate="visible" variants={fadeUp}
-              style={{ fontFamily: "var(--font-unbounded)", fontSize: "clamp(2.2rem,5vw,4.5rem)", color: "#3A2A35", lineHeight: 1.1, marginBottom: "1.5rem" }}
+              style={{ fontFamily: "var(--font-unbounded)", fontSize: "clamp(2rem,5vw,4.5rem)", color: "#3A2A35", lineHeight: 1.1, marginBottom: "1.5rem" }}
             >
               Révélez votre{" "}
               <em style={{ color: "#C94F78", fontStyle: "italic", display: "block" }}>beauté naturelle</em>
             </motion.h1>
             <motion.p
               custom={2} initial="hidden" animate="visible" variants={fadeUp}
-              style={{ fontFamily: "var(--font-montserrat)", fontWeight: 400, color: "#3A2A35", fontSize: "1rem", lineHeight: 1.85, marginBottom: "2rem", maxWidth: "480px", opacity: 0.8 }}
+              style={{ fontFamily: "var(--font-montserrat)", fontWeight: 400, color: "#3A2A35", fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.85, marginBottom: "2rem", maxWidth: "480px", opacity: 0.8 }}
             >
               Des soins cosmétiques de qualité pour toutes les peaux — corps, visage, et gammes spécialisées livrés partout.
             </motion.p>
-            <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-4">
+            <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-3">
               <Link
                 href="/catalogue"
-                className="flex items-center gap-2 px-8 py-3.5 text-white font-semibold transition-colors duration-200"
-                style={{ backgroundColor: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600 }}
+                className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-white font-semibold transition-colors duration-200"
+                style={{ backgroundColor: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600, fontSize: "clamp(0.8rem,2vw,0.95rem)" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#C94F78")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#E8739A")}
               >
@@ -93,27 +92,27 @@ export default function HomePage() {
                 href="https://wa.me/22940696034"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-8 py-3.5 transition-colors duration-200"
-                style={{ border: "1.5px solid #E8739A", color: "#C94F78", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600, backgroundColor: "rgba(255,255,255,0.7)" }}
+                className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 transition-colors duration-200"
+                style={{ border: "1.5px solid #E8739A", color: "#C94F78", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600, backgroundColor: "rgba(255,255,255,0.7)", fontSize: "clamp(0.8rem,2vw,0.95rem)" }}
                 onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#FDE8EF")}
                 onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.7)")}
               >
                 <FaWhatsapp size={16} color="#25D366" />
-                Commander sur WhatsApp
+                Commander
               </a>
             </motion.div>
 
             {/* Trust badges */}
-            <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-4 mt-8">
+            <motion.div custom={4} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-2 mt-6 md:mt-8">
               {["✓ Livraison partout", "✓ Qualité garantie", "✓ Produits certifiés"].map((b) => (
-                <span key={b} style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#C94F78", fontSize: "0.75rem", backgroundColor: "rgba(255,255,255,0.8)", borderRadius: "999px", padding: "0.3rem 0.9rem", border: "1px solid rgba(232,115,154,0.2)" }}>
+                <span key={b} style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#C94F78", fontSize: "0.72rem", backgroundColor: "rgba(255,255,255,0.8)", borderRadius: "999px", padding: "0.3rem 0.9rem", border: "1px solid rgba(232,115,154,0.2)" }}>
                   {b}
                 </span>
               ))}
             </motion.div>
           </div>
 
-          {/* Floating badges */}
+          {/* Floating badges — hidden on mobile */}
           <motion.div custom={2} initial="hidden" animate="visible" variants={fadeUp} className="hidden md:flex items-center justify-center relative" style={{ minHeight: "400px" }}>
             <div className="relative" style={{ width: "340px", height: "340px" }}>
               <div style={{ width: "100%", height: "100%", borderRadius: "50%", overflow: "hidden", boxShadow: "0 20px 60px rgba(232,115,154,0.2)", position: "relative" }}>
@@ -135,15 +134,15 @@ export default function HomePage() {
 
       {/* STATS */}
       <section style={{ backgroundColor: "#FFFFFF", borderTop: "1px solid #FDE8EF", borderBottom: "1px solid #FDE8EF" }}>
-        <div className="max-w-7xl mx-auto px-6 py-8 flex flex-wrap justify-around gap-8">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 py-6 sm:py-8 grid grid-cols-2 sm:flex sm:flex-wrap justify-around gap-4 sm:gap-8">
           {stats.map((s, i) => (
-            <div key={i} className="flex items-center gap-3 text-center flex-col sm:flex-row sm:text-left">
-              <div style={{ width: "44px", height: "44px", borderRadius: "50%", backgroundColor: "#FDE8EF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <div key={i} className="flex items-center gap-2 sm:gap-3 flex-col sm:flex-row text-center sm:text-left">
+              <div style={{ width: "40px", height: "40px", borderRadius: "50%", backgroundColor: "#FDE8EF", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {s.icon}
               </div>
               <div>
-                <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 600, color: "#C94F78", fontSize: "1.8rem", lineHeight: 1 }}>{s.value}</p>
-                <p style={{ fontFamily: "var(--font-montserrat)", fontWeight: 400, color: "#7A6070", fontSize: "0.78rem" }}>{s.label}</p>
+                <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 600, color: "#C94F78", fontSize: "clamp(1.2rem,3vw,1.8rem)", lineHeight: 1 }}>{s.value}</p>
+                <p style={{ fontFamily: "var(--font-montserrat)", fontWeight: 400, color: "#7A6070", fontSize: "0.72rem" }}>{s.label}</p>
               </div>
             </div>
           ))}
@@ -151,19 +150,19 @@ export default function HomePage() {
       </section>
 
       {/* CATÉGORIES */}
-      <section style={{ backgroundColor: "#FDFAF8", padding: "5rem 1.5rem" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: "#FDFAF8" }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }} viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.8rem,3vw,2.5rem)", marginBottom: "0.8rem" }}>
+            <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.5rem,3vw,2.5rem)", marginBottom: "0.8rem" }}>
               Nos Catégories
             </h2>
-            <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070" }}>Découvrez notre sélection de soins pour toutes les peaux</p>
+            <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "clamp(0.85rem,2vw,1rem)" }}>Découvrez notre sélection de soins pour toutes les peaux</p>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {categoryCards.map((c, i) => (
               <motion.div
                 key={c.val}
@@ -187,10 +186,10 @@ export default function HomePage() {
                     <Image src={c.image} alt={c.label} fill className="object-cover transition-transform duration-500 group-hover:scale-110" unoptimized />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(201,80,120,0.35), transparent)" }} />
                   </div>
-                  <div className="flex items-center justify-between p-5">
+                  <div className="flex items-center justify-between p-4 sm:p-5">
                     <div>
-                      <h3 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.92rem" }}>{c.label}</h3>
-                      <p style={{ fontFamily: "var(--font-montserrat)", color: "#E8739A", fontSize: "0.78rem", marginTop: "0.25rem" }}>{c.count} produits</p>
+                      <h3 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.88rem" }}>{c.label}</h3>
+                      <p style={{ fontFamily: "var(--font-montserrat)", color: "#E8739A", fontSize: "0.75rem", marginTop: "0.25rem" }}>{c.count} produits</p>
                     </div>
                     <ArrowRight size={18} color="#E8739A" />
                   </div>
@@ -202,15 +201,15 @@ export default function HomePage() {
       </section>
 
       {/* BESTSELLERS */}
-      <section style={{ backgroundColor: "#FDE8EF", padding: "5rem 1.5rem" }}>
+      <section className="py-12 sm:py-20 px-4 sm:px-6" style={{ backgroundColor: "#FDE8EF" }}>
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65 }} viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.8rem,3vw,2.5rem)" }}>
+            <div className="flex items-center justify-center gap-3 mb-3 flex-wrap">
+              <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 300, color: "#3A2A35", fontSize: "clamp(1.5rem,3vw,2.5rem)" }}>
                 Nos Bestsellers
               </h2>
               <span style={{ backgroundColor: "#E8739A", color: "white", fontFamily: "var(--font-montserrat)", fontWeight: 600, fontSize: "0.72rem", borderRadius: "999px", padding: "0.3rem 0.9rem" }}>
@@ -218,7 +217,7 @@ export default function HomePage() {
               </span>
             </div>
           </motion.div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {bestsellers.map((p, i) => (
               <motion.div
                 key={p.id}
@@ -229,10 +228,10 @@ export default function HomePage() {
               </motion.div>
             ))}
           </div>
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-8 sm:mt-10">
             <Link
               href="/catalogue"
-              className="flex items-center gap-2 px-8 py-3.5 text-white transition-colors duration-200"
+              className="flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-3.5 text-white transition-colors duration-200"
               style={{ backgroundColor: "#E8739A", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600 }}
               onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#C94F78")}
               onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#E8739A")}
@@ -245,7 +244,7 @@ export default function HomePage() {
       </section>
 
       {/* WHATSAPP BANNER */}
-      <section className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #C94F78, #8A5A8A)", padding: "5rem 2rem", textAlign: "center" }}>
+      <section className="relative overflow-hidden py-12 sm:py-20 px-4 sm:px-8 text-center" style={{ background: "linear-gradient(135deg, #C94F78, #8A5A8A)" }}>
         <motion.div
           initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65 }} viewport={{ once: true }}
@@ -259,17 +258,17 @@ export default function HomePage() {
               </svg>
             </div>
           </div>
-          <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "white", fontSize: "clamp(1.5rem,3vw,2.2rem)", marginBottom: "1rem" }}>
+          <h2 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "white", fontSize: "clamp(1.3rem,3vw,2.2rem)", marginBottom: "1rem" }}>
             Commandez facilement sur WhatsApp
           </h2>
-          <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "1rem", lineHeight: 1.9, marginBottom: "2rem" }}>
+          <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "clamp(0.9rem,2vw,1rem)", lineHeight: 1.9, marginBottom: "2rem" }}>
             Contactez-nous directement pour passer votre commande. Livraison rapide partout.
           </p>
           <a
             href="https://wa.me/22940696034?text=Bonjour, je voudrais commander..."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 transition-colors duration-200"
+            className="inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 transition-colors duration-200"
             style={{ backgroundColor: "white", color: "#C94F78", borderRadius: "999px", fontFamily: "var(--font-montserrat)", fontWeight: 600 }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#FDE8EF")}
             onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "white")}
