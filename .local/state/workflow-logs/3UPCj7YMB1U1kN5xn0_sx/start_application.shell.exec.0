@@ -1,0 +1,80 @@
+
+> my-app@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 461ms
+[35m[1mAttention[22m[39m: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+[36mhttps://nextjs.org/telemetry[39m
+
+
+[37m[1m○[22m[39m Compiling / ...
+[31m[1m⨯[22m[39m Error: Event handlers cannot be passed to Client Component props.
+  <a href=... target="_blank" rel=... className=... style=... onMouseEnter={function onMouseEnter} onMouseLeave=... children=...>
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: [32m'3183686980'[39m
+}
+[31m[1m⨯[22m[39m Error: Event handlers cannot be passed to Client Component props.
+  <a href=... target="_blank" rel=... className=... style=... onMouseEnter=... onMouseLeave={function onMouseLeave} children=...>
+                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: [32m'2553671812'[39m
+}
+ GET / [31m500[39m in 4.3s[2m (next.js: 3.3s, application-code: 978ms)[22m
+[36m[browser][39m [31mUncaught Error: Event handlers cannot be passed to Client Component props.
+  <a href=... target="_blank" rel=... className=... style=... onMouseEnter={function onMouseEnter} onMouseLeave=... children=...>
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.[39m
+[31m    at stringify (<anonymous>:1:18)
+    at stringify (<anonymous>:1:18)
+    at stringify (<anonymous>:1:18)
+    at RootLayout (src/app/layout.tsx:34:9)[39m
+  [90m32 |[0m         <[33mNavbar[0m />
+  [90m33 |[0m         <main className=[32m"flex-1"[0m>{children}</main>
+[31m[1m>[0m [90m34 |[0m         <[33mFooter[0m />
+  [90m   |[0m         [31m[1m^[0m
+  [90m35 |[0m       </body>
+  [90m36 |[0m     </html>
+  [90m37 |[0m   );
+[31m[1m⨯[22m[39m Error: Event handlers cannot be passed to Client Component props.
+  <a href=... target="_blank" rel=... className=... style=... onMouseEnter={function onMouseEnter} onMouseLeave=... children=...>
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: [32m'3183686980'[39m
+}
+[31m[1m⨯[22m[39m Error: Event handlers cannot be passed to Client Component props.
+  <a href=... target="_blank" rel=... className=... style=... onMouseEnter=... onMouseLeave={function onMouseLeave} children=...>
+                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^
+If you need interactivity, consider converting part of this to a Client Component.
+    at stringify (<anonymous>)
+    at stringify (<anonymous>)
+    at stringify (<anonymous>) {
+  digest: [32m'2553671812'[39m
+}
+ GET / [31m500[39m in 553ms[2m (next.js: 3ms, application-code: 549ms)[22m
+[33m[1m⚠[22m[39m Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from "850f3dd8-8542-4e55-8c33-77492c0ceef1-00-2sbn5k0moj0ym.janeway.replit.dev".
+Cross-origin access to Next.js dev resources is blocked by default for safety.
+
+To allow this host in development, add it to "allowedDevOrigins" in next.config.js and restart the dev server:
+
+// next.config.js
+module.exports = {
+  allowedDevOrigins: ['850f3dd8-8542-4e55-8c33-77492c0ceef1-00-2sbn5k0moj0ym.janeway.replit.dev'],
+}
+
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[32m[1m✓[22m[39m Compiled in 98ms
