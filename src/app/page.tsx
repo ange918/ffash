@@ -35,7 +35,7 @@ const stats = [
   { icon: <Star size={20} color="#C94F78" />, value: "100+", label: "Produits disponibles" },
   { icon: <Sparkles size={20} color="#C94F78" />, value: "12+", label: "Gammes spécialisées" },
   { icon: <Shield size={20} color="#C94F78" />, value: "Toutes", label: "Peaux sublimées" },
-  { icon: <Truck size={20} color="#C94F78" />, value: "🇧🇯", label: "Livraison au Bénin" },
+  { icon: <Truck size={20} color="#C94F78" />, value: "🌍", label: "Livraison partout" },
 ];
 
 export default function HomePage() {
@@ -76,7 +76,7 @@ export default function HomePage() {
               custom={2} initial="hidden" animate="visible" variants={fadeUp}
               style={{ fontFamily: "var(--font-montserrat)", fontWeight: 400, color: "#3A2A35", fontSize: "1rem", lineHeight: 1.85, marginBottom: "2rem", maxWidth: "480px", opacity: 0.8 }}
             >
-              Des soins cosmétiques de qualité pour toutes les peaux — corps, visage, et gammes spécialisées livrés au Bénin.
+              Des soins cosmétiques de qualité pour toutes les peaux — corps, visage, et gammes spécialisées livrés partout.
             </motion.p>
             <motion.div custom={3} initial="hidden" animate="visible" variants={fadeUp} className="flex flex-wrap gap-4">
               <Link
@@ -90,7 +90,7 @@ export default function HomePage() {
                 <ArrowRight size={16} />
               </Link>
               <a
-                href="https://wa.me/22900000000"
+                href="https://wa.me/22940696034"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-8 py-3.5 transition-colors duration-200"
@@ -263,10 +263,10 @@ export default function HomePage() {
             Commandez facilement sur WhatsApp
           </h2>
           <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "1rem", lineHeight: 1.9, marginBottom: "2rem" }}>
-            Contactez-nous directement pour passer votre commande. Livraison rapide partout au Bénin.
+            Contactez-nous directement pour passer votre commande. Livraison rapide partout.
           </p>
           <a
-            href="https://wa.me/22900000000?text=Bonjour, je voudrais commander..."
+            href="https://wa.me/22940696034?text=Bonjour, je voudrais commander..."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 transition-colors duration-200"

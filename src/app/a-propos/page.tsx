@@ -101,12 +101,14 @@ export default function AProposPage() {
 
           {/* Visuel */}
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }} className="flex items-center justify-center relative" style={{ minHeight: "400px" }}>
-            <div className="relative flex items-center justify-center" style={{ width: "360px", height: "360px", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
-              <Image src="/images/product-placeholder.png" alt="Cosmetics Shop" fill className="object-cover" unoptimized />
-              <span className="animate-float absolute -top-2 right-8 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Leaf size={12} color="#E8739A" /> Naturel</span>
-              <span className="animate-float-delay-1 absolute -left-12 top-1/4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Droplets size={12} color="#E8739A" /> Hydratant</span>
-              <span className="animate-float-delay-2 absolute -right-6 bottom-1/4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Sparkles size={12} color="#E8739A" /> Éclaircissant</span>
-              <span className="animate-float-delay-3 absolute bottom-0 left-8 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Heart size={12} color="#E8739A" /> Pour toutes</span>
+            <div className="relative" style={{ width: "360px", height: "360px" }}>
+              <div style={{ width: "360px", height: "360px", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
+                <Image src="/images/product-placeholder.png" alt="Cosmetics Shop" fill className="object-cover" unoptimized />
+              </div>
+              <span className="animate-float absolute -top-4 right-4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Leaf size={12} color="#E8739A" /> Naturel</span>
+              <span className="animate-float-delay-1 absolute -left-14 top-1/4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Droplets size={12} color="#E8739A" /> Hydratant</span>
+              <span className="animate-float-delay-2 absolute -right-10 bottom-1/3 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Sparkles size={12} color="#E8739A" /> Éclaircissant</span>
+              <span className="animate-float-delay-3 absolute -bottom-4 left-8 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Heart size={12} color="#E8739A" /> Pour toutes</span>
             </div>
           </motion.div>
         </div>
@@ -178,10 +180,10 @@ export default function AProposPage() {
             Un service pensé <em style={{ fontStyle: "italic", color: "#F4B8CB" }}>pour vous</em>
           </h2>
           <p style={{ fontFamily: "var(--font-montserrat)", color: "rgba(255,255,255,0.85)", fontSize: "1rem", lineHeight: 1.9, maxWidth: "560px", margin: "0 auto 2rem" }}>
-            Pas besoin de créer un compte ou de remplir de longs formulaires. Chez Cosmetics Shop, commander est aussi simple qu'envoyer un message. Choisissez vos produits, ajoutez-les au panier, et envoyez votre commande directement sur WhatsApp. Nous vous répondons rapidement et organisons la livraison partout au Bénin.
+            Pas besoin de créer un compte ou de remplir de longs formulaires. Chez Cosmetics Shop, commander est aussi simple qu'envoyer un message. Choisissez vos produits, ajoutez-les au panier, et envoyez votre commande directement sur WhatsApp. Nous vous répondons rapidement et organisons la livraison partout.
           </p>
           <a
-            href="https://wa.me/22900000000?text=Bonjour Cosmetics Shop, je souhaite passer une commande !"
+            href="https://wa.me/22940696034?text=Bonjour Cosmetics Shop, je souhaite passer une commande !"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 transition-colors duration-200"
@@ -208,7 +210,7 @@ export default function AProposPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { icon: <FaWhatsapp size={28} color="#E8739A" />, titre: "WhatsApp", info: "Disponible Lun–Sam 8h–20h", lien: "Écrire sur WhatsApp →", href: "https://wa.me/22900000000" },
+              { icon: <FaWhatsapp size={28} color="#E8739A" />, titre: "WhatsApp", info: "Disponible Lun–Sam 8h–20h", lien: "Écrire sur WhatsApp →", href: "https://wa.me/22940696034" },
               { icon: <MapPin size={28} color="#E8739A" />, titre: "Localisation", info: "Cotonou, Bénin", lien: "Voir sur la carte →", href: "https://maps.google.com/?q=Cotonou+Bénin" },
               { icon: <Package size={28} color="#E8739A" />, titre: "Livraison", info: "Livraison rapide", lien: "En savoir plus →", href: "/contact" },
             ].map((c, i) => (

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { MapPin, Clock, Mail } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function ContactPage() {
   const [form, setForm] = useState({ nom: "", email: "", telephone: "", sujet: "Commande", message: "" });
@@ -9,7 +11,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const text = encodeURIComponent(`Bonjour Cosmetics Shop !\n\nNom: ${form.nom}\nEmail: ${form.email}\nTéléphone: ${form.telephone}\nSujet: ${form.sujet}\n\n${form.message}`);
-    window.open(`https://wa.me/22900000000?text=${text}`, "_blank");
+    window.open(`https://wa.me/22940696034?text=${text}`, "_blank");
   };
 
   const inputStyle = {
@@ -23,6 +25,29 @@ export default function ContactPage() {
     color: "#3A2A35",
     backgroundColor: "white",
   };
+
+  const contactItems = [
+    {
+      icon: <FaWhatsapp size={22} color="#E8739A" />,
+      label: "WhatsApp",
+      info: "+229 40 69 60 34",
+    },
+    {
+      icon: <Mail size={22} color="#E8739A" />,
+      label: "Email",
+      info: "cosmeticsshop373@gmail.com",
+    },
+    {
+      icon: <MapPin size={22} color="#E8739A" />,
+      label: "Localisation",
+      info: "Cotonou, Bénin",
+    },
+    {
+      icon: <Clock size={22} color="#E8739A" />,
+      label: "Disponibilité",
+      info: "Lun–Sam, 8h–20h",
+    },
+  ];
 
   return (
     <div style={{ backgroundColor: "#FDFAF8", minHeight: "100vh", padding: "4rem 1.5rem" }}>
@@ -40,13 +65,11 @@ export default function ContactPage() {
           {/* Colonne gauche */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
             <div className="flex flex-col gap-4 mb-8">
-              {[
-                { emoji: "📍", label: "Localisation", info: "Cotonou, Bénin" },
-                { emoji: "📱", label: "WhatsApp", info: "+229 00 00 00 00" },
-                { emoji: "🕐", label: "Disponibilité", info: "Lun–Sam, 8h–20h" },
-              ].map((c) => (
+              {contactItems.map((c) => (
                 <div key={c.label} className="flex items-center gap-4" style={{ backgroundColor: "#FDE8EF", borderRadius: "12px", padding: "1.2rem" }}>
-                  <span style={{ fontSize: "1.5rem" }}>{c.emoji}</span>
+                  <div style={{ width: "44px", height: "44px", backgroundColor: "white", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    {c.icon}
+                  </div>
                   <div>
                     <p style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.88rem" }}>{c.label}</p>
                     <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.82rem" }}>{c.info}</p>
@@ -58,11 +81,12 @@ export default function ContactPage() {
             {/* Map placeholder */}
             <div
               className="flex items-center justify-center"
-              style={{ backgroundColor: "#EDE0F0", borderRadius: "16px", height: "250px" }}
+              style={{ backgroundColor: "#EDE0F0", borderRadius: "16px", height: "200px" }}
             >
-              <div className="text-center">
-                <p style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#7A6070", fontSize: "1rem" }}>
-                  📍 Cosmetics Shop — Cotonou, Bénin
+              <div className="text-center flex flex-col items-center gap-2">
+                <MapPin size={28} color="#C94F78" />
+                <p style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#7A6070", fontSize: "0.95rem" }}>
+                  Cosmetics Shop — Cotonou, Bénin
                 </p>
               </div>
             </div>
@@ -101,7 +125,7 @@ export default function ContactPage() {
                   type="tel"
                   value={form.telephone}
                   onChange={(e) => setForm({ ...form, telephone: e.target.value })}
-                  placeholder="+229 00 00 00 00"
+                  placeholder="+229 40 69 60 34"
                   style={inputStyle}
                   onFocus={(e) => { e.target.style.borderColor = "#E8739A"; e.target.style.boxShadow = "0 0 0 3px rgba(232,115,154,0.15)"; }}
                   onBlur={(e) => { e.target.style.borderColor = "#FDE8EF"; e.target.style.boxShadow = "none"; }}

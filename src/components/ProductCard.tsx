@@ -97,7 +97,7 @@ export default function ProductCard({ product }: Props) {
             Ajouter au panier
           </button>
           <a
-            href={`https://wa.me/22900000000?text=${waMessage}`}
+            href={`https://wa.me/22940696034?text=${waMessage}`}
             target="_blank"
             rel="noopener noreferrer"
             className="w-full py-2.5 flex items-center justify-center gap-2 transition-colors duration-200"

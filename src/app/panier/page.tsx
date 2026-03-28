@@ -146,7 +146,7 @@ export default function PanierPage() {
 
                 <div className="flex flex-col gap-3">
                   <a
-                    href={`https://wa.me/22900000000?text=${buildWhatsAppMessage()}`}
+                    href={`https://wa.me/22940696034?text=${buildWhatsAppMessage()}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 text-white transition-colors duration-200"

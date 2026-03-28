@@ -61,7 +61,7 @@ export default function Navbar() {
 
             {/* WhatsApp button */}
             <a
-              href="https://wa.me/22900000000"
+              href="https://wa.me/22940696034"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-1.5 px-4 py-2 text-white transition-colors duration-200"
@@ -109,7 +109,7 @@ export default function Navbar() {
             </nav>
             <div className="mt-auto">
               <a
-                href="https://wa.me/22900000000"
+                href="https://wa.me/22940696034"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full py-3 text-white"

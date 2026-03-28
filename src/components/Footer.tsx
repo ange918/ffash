@@ -28,7 +28,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone size={14} color="#F4B8CB" />
-                <span style={{ fontFamily: "var(--font-montserrat)", color: "#F4B8CB", fontSize: "0.78rem" }}>+229 00 00 00 00</span>
+                <span style={{ fontFamily: "var(--font-montserrat)", color: "#F4B8CB", fontSize: "0.78rem" }}>+229 40 69 60 34</span>
               </div>
               <div className="flex items-center gap-2.5">
                 <Clock size={14} color="#F4B8CB" />
@@ -90,7 +90,7 @@ export default function Footer() {
               Nous contacter
             </h3>
             <a
-              href="https://wa.me/22900000000"
+              href="https://wa.me/22940696034"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-white mb-6 transition-colors duration-200"
