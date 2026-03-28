@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { Leaf, Droplets, Sparkles, Heart, Award, Users, Zap, MapPin, Package } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 
 const fadeUp = {
@@ -15,12 +17,12 @@ const fadeUp = {
 };
 
 const valeurs = [
-  { emoji: "💎", titre: "Qualité", desc: "Des formules soigneusement sélectionnées pour des résultats visibles et durables." },
-  { emoji: "🌿", titre: "Naturalité", desc: "Des ingrédients respectueux de votre peau et de votre bien-être au quotidien." },
-  { emoji: "🤝", titre: "Proximité", desc: "Une relation client directe, humaine et réactive — commandez sur WhatsApp en quelques secondes." },
-  { emoji: "✨", titre: "Inclusivité", desc: "Des produits pensés pour toutes les carnations, tous les types de peau, sans exception." },
-  { emoji: "🇧🇯", titre: "Fierté Béninoise", desc: "Une boutique ancrée au Bénin, fière de servir et sublimer la beauté africaine." },
-  { emoji: "🚀", titre: "Accessibilité", desc: "Des prix justes pour que chaque femme accède à des soins de qualité supérieure." },
+  { icon: <Award size={36} color="#E8739A" />, titre: "Qualité", desc: "Des formules soigneusement sélectionnées pour des résultats visibles et durables." },
+  { icon: <Leaf size={36} color="#E8739A" />, titre: "Naturalité", desc: "Des ingrédients respectueux de votre peau et de votre bien-être au quotidien." },
+  { icon: <Users size={36} color="#E8739A" />, titre: "Proximité", desc: "Une relation client directe, humaine et réactive — commandez sur WhatsApp en quelques secondes." },
+  { icon: <Sparkles size={36} color="#E8739A" />, titre: "Inclusivité", desc: "Des produits pensés pour toutes les carnations, tous les types de peau, sans exception." },
+  { icon: <Heart size={36} color="#E8739A" />, titre: "Fierté", desc: "Une boutique fière de servir et sublimer la beauté africaine." },
+  { icon: <Zap size={36} color="#E8739A" />, titre: "Accessibilité", desc: "Des prix justes pour que chaque femme accède à des soins de qualité supérieure." },
 ];
 
 const chiffres = [
@@ -99,19 +101,12 @@ export default function AProposPage() {
 
           {/* Visuel */}
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.1 }} viewport={{ once: true }} className="flex items-center justify-center relative" style={{ minHeight: "400px" }}>
-            <div className="relative flex items-center justify-center" style={{ width: "360px", height: "360px", backgroundColor: "#FDE8EF", borderRadius: "50%" }}>
-              <div style={{ position: "absolute", inset: "20px", border: "1px solid rgba(244,184,203,0.3)", borderRadius: "50%" }} />
-              <div style={{ position: "absolute", inset: "40px", border: "1px solid rgba(244,184,203,0.3)", borderRadius: "50%" }} />
-              <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                <path d="M40 15C40 15 28 25 28 35C28 41.627 33.373 47 40 47C46.627 47 52 41.627 52 35C52 25 40 15 40 15Z" fill="#E8739A"/>
-                <path d="M40 47C40 47 20 50 18 60C17 65 21 70 27 71C33 72 38 68 40 63" fill="#C94F78"/>
-                <path d="M40 47C40 47 60 50 62 60C63 65 59 70 53 71C47 72 42 68 40 63" fill="#C9A0C4"/>
-                <path d="M35 60C32 65 35 72 40 72C45 72 48 65 45 60" fill="#F4B8CB"/>
-              </svg>
-              <span className="animate-float absolute -top-2 right-8 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}>🌿 Naturel</span>
-              <span className="animate-float-delay-1 absolute -left-12 top-1/4 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}>💧 Hydratant</span>
-              <span className="animate-float-delay-2 absolute -right-6 bottom-1/4 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}>✨ Éclaircissant</span>
-              <span className="animate-float-delay-3 absolute bottom-0 left-8 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}>💕 Pour toutes</span>
+            <div className="relative flex items-center justify-center" style={{ width: "360px", height: "360px", borderRadius: "50%", overflow: "hidden", position: "relative" }}>
+              <Image src="/images/product-placeholder.png" alt="Cosmetics Shop" fill className="object-cover" unoptimized />
+              <span className="animate-float absolute -top-2 right-8 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Leaf size={12} color="#E8739A" /> Naturel</span>
+              <span className="animate-float-delay-1 absolute -left-12 top-1/4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Droplets size={12} color="#E8739A" /> Hydratant</span>
+              <span className="animate-float-delay-2 absolute -right-6 bottom-1/4 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Sparkles size={12} color="#E8739A" /> Éclaircissant</span>
+              <span className="animate-float-delay-3 absolute bottom-0 left-8 flex items-center gap-1.5 px-4 py-2 bg-white rounded-full shadow-lg" style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500, color: "#3A2A35", fontSize: "0.72rem" }}><Heart size={12} color="#E8739A" /> Pour toutes</span>
             </div>
           </motion.div>
         </div>
@@ -138,8 +133,8 @@ export default function AProposPage() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-6px)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
               >
-                <div className="flex items-center justify-center mx-auto mb-5" style={{ width: "72px", height: "72px", backgroundColor: "#FDE8EF", borderRadius: "50%", fontSize: "36px" }}>
-                  {v.emoji}
+                <div className="flex items-center justify-center mx-auto mb-5" style={{ width: "72px", height: "72px", backgroundColor: "#FDE8EF", borderRadius: "50%" }}>
+                  {v.icon}
                 </div>
                 <h3 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "1rem", marginBottom: "0.75rem" }}>{v.titre}</h3>
                 <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.85rem", lineHeight: 1.8 }}>{v.desc}</p>
@@ -213,9 +208,9 @@ export default function AProposPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
-              { emoji: "📱", titre: "WhatsApp", info: "Disponible Lun–Sam 8h–20h", lien: "Écrire sur WhatsApp →", href: "https://wa.me/22900000000" },
-              { emoji: "📍", titre: "Localisation", info: "Cotonou, Bénin", lien: "Voir sur la carte →", href: "https://maps.google.com/?q=Cotonou+Bénin" },
-              { emoji: "📦", titre: "Livraison", info: "Partout au Bénin", lien: "En savoir plus →", href: "/contact" },
+              { icon: <FaWhatsapp size={28} color="#E8739A" />, titre: "WhatsApp", info: "Disponible Lun–Sam 8h–20h", lien: "Écrire sur WhatsApp →", href: "https://wa.me/22900000000" },
+              { icon: <MapPin size={28} color="#E8739A" />, titre: "Localisation", info: "Cotonou, Bénin", lien: "Voir sur la carte →", href: "https://maps.google.com/?q=Cotonou+Bénin" },
+              { icon: <Package size={28} color="#E8739A" />, titre: "Livraison", info: "Livraison rapide", lien: "En savoir plus →", href: "/contact" },
             ].map((c, i) => (
               <motion.div
                 key={c.titre}
@@ -226,8 +221,8 @@ export default function AProposPage() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)"; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
               >
-                <div className="flex items-center justify-center mx-auto mb-4" style={{ width: "64px", height: "64px", backgroundColor: "#FDE8EF", borderRadius: "50%", fontSize: "28px" }}>
-                  {c.emoji}
+                <div className="flex items-center justify-center mx-auto mb-4" style={{ width: "64px", height: "64px", backgroundColor: "#FDE8EF", borderRadius: "50%" }}>
+                  {c.icon}
                 </div>
                 <h3 style={{ fontFamily: "var(--font-unbounded)", fontWeight: 400, color: "#3A2A35", fontSize: "0.95rem", marginBottom: "0.4rem" }}>{c.titre}</h3>
                 <p style={{ fontFamily: "var(--font-montserrat)", color: "#7A6070", fontSize: "0.85rem", marginBottom: "0.75rem" }}>{c.info}</p>
