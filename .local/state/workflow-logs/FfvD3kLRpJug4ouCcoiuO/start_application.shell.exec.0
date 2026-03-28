@@ -1,0 +1,17 @@
+
+> my-app@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 489ms
+
+ GET / [32m200[39m in 2.8s[2m (next.js: 2.4s, application-code: 415ms)[22m
+ GET /catalogue [32m200[39m in 2.5s[2m (next.js: 2.0s, application-code: 498ms)[22m
+ GET / [32m200[39m in 203ms[2m (next.js: 61ms, application-code: 141ms)[22m
+ GET / [32m200[39m in 72ms[2m (next.js: 3ms, application-code: 70ms)[22m
+[36m[browser][39m [33mImage with src "/images/savons.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading[39m
+ GET /a-propos [32m200[39m in 94ms[2m (next.js: 15ms, application-code: 79ms)[22m
+ GET /contact [32m200[39m in 101ms[2m (next.js: 16ms, application-code: 86ms)[22m

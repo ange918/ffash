@@ -1,0 +1,44 @@
+
+> my-app@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 348ms
+
+[37m[1m○[22m[39m Compiling / ...
+ GET / [32m200[39m in 4.6s[2m (next.js: 4.2s, application-code: 419ms)[22m
+ GET / [32m200[39m in 2.5s[2m (next.js: 2.4s, application-code: 108ms)[22m
+ GET / [32m200[39m in 78ms[2m (next.js: 8ms, application-code: 70ms)[22m
+ GET / [32m200[39m in 66ms[2m (next.js: 2ms, application-code: 64ms)[22m
+ GET /a-propos [32m200[39m in 40ms[2m (next.js: 19ms, application-code: 21ms)[22m
+ GET /contact [32m200[39m in 858ms[2m (next.js: 838ms, application-code: 20ms)[22m
+ GET /a-propos [32m200[39m in 123ms[2m (next.js: 4ms, application-code: 119ms)[22m
+ GET /contact [32m200[39m in 126ms[2m (next.js: 7ms, application-code: 119ms)[22m
+ GET /catalogue?categorie=Cr%C3%A8mes+Visage [32m200[39m in 64ms[2m (next.js: 34ms, application-code: 30ms)[22m
+ GET / [32m200[39m in 23ms[2m (next.js: 3ms, application-code: 20ms)[22m
+ GET /a-propos [32m200[39m in 22ms[2m (next.js: 3ms, application-code: 19ms)[22m
+[32m[1m✓[22m[39m Compiled in 199ms
+[32m[1m✓[22m[39m Compiled in 233ms
+[32m[1m✓[22m[39m Compiled in 51ms
+[32m[1m✓[22m[39m Compiled in 45ms
+ GET /a-propos [32m200[39m in 84ms[2m (next.js: 5ms, application-code: 78ms)[22m
+[32m[1m✓[22m[39m Compiled in 39ms
+[32m[1m✓[22m[39m Compiled in 36ms
+[32m[1m✓[22m[39m Compiled in 35ms
+[32m[1m✓[22m[39m Compiled in 50ms
+[32m[1m✓[22m[39m Compiled in 74ms
+[32m[1m✓[22m[39m Compiled in 56ms
+ GET /contact [32m200[39m in 49ms[2m (next.js: 4ms, application-code: 45ms)[22m
+ GET /contact [32m200[39m in 45ms[2m (next.js: 1952µs, application-code: 43ms)[22m
+[32m[1m✓[22m[39m Compiled in 39ms
+ GET /contact [32m200[39m in 130ms[2m (next.js: 5ms, application-code: 125ms)[22m
+ GET /contact [32m200[39m in 75ms[2m (next.js: 3ms, application-code: 72ms)[22m
+[32m[1m✓[22m[39m Compiled in 39ms
+[32m[1m✓[22m[39m Compiled in 47ms
+[32m[1m✓[22m[39m Compiled in 146ms
+ GET /contact [32m200[39m in 157ms[2m (next.js: 69ms, application-code: 88ms)[22m
+ GET / [32m200[39m in 35ms[2m (next.js: 14ms, application-code: 21ms)[22m
+ GET /contact [32m200[39m in 22ms[2m (next.js: 2ms, application-code: 20ms)[22m
+ GET / [32m200[39m in 21ms[2m (next.js: 2ms, application-code: 19ms)[22m

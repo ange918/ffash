@@ -1,0 +1,29 @@
+
+> my-app@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 488ms
+
+ GET /contact [32m200[39m in 1124ms[2m (next.js: 808ms, application-code: 316ms)[22m
+ GET / [32m200[39m in 123ms[2m (next.js: 21ms, application-code: 102ms)[22m
+ GET /a-propos [32m200[39m in 94ms[2m (next.js: 15ms, application-code: 79ms)[22m
+ GET /contact [32m200[39m in 47ms[2m (next.js: 3ms, application-code: 44ms)[22m
+ GET /a-propos [32m200[39m in 25ms[2m (next.js: 4ms, application-code: 21ms)[22m
+ GET / [32m200[39m in 83ms[2m (next.js: 3ms, application-code: 80ms)[22m
+ GET / [32m200[39m in 23ms[2m (next.js: 4ms, application-code: 19ms)[22m
+ GET /catalogue [32m200[39m in 62ms[2m (next.js: 38ms, application-code: 24ms)[22m
+[32m[1m✓[22m[39m Compiled in 388ms
+ GET /a-propos [32m200[39m in 29ms[2m (next.js: 4ms, application-code: 25ms)[22m
+[32m[1m✓[22m[39m Compiled in 170ms
+[32m[1m✓[22m[39m Compiled in 49ms
+ GET /a-propos [32m200[39m in 19ms[2m (next.js: 6ms, application-code: 13ms)[22m
+ GET /a-propos [32m200[39m in 26ms[2m (next.js: 5ms, application-code: 21ms)[22m
+ GET / [32m200[39m in 34ms[2m (next.js: 8ms, application-code: 27ms)[22m
+ GET / [32m200[39m in 211ms[2m (next.js: 18ms, application-code: 193ms)[22m
+[32m[1m✓[22m[39m Compiled in 863ms
+ GET /catalogue [32m200[39m in 36ms[2m (next.js: 4ms, application-code: 32ms)[22m
+[32m[1m✓[22m[39m Compiled in 101ms
+[32m[1m✓[22m[39m Compiled in 357ms

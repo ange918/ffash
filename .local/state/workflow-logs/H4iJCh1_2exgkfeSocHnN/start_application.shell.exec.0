@@ -1,0 +1,161 @@
+
+> ffas@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 344ms
+
+ GET / [32m200[39m in 373ms[2m (next.js: 161ms, application-code: 211ms)[22m
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+ GET /api/auth/session [32m200[39m in 773ms[2m (next.js: 742ms, application-code: 31ms)[22m
+ GET / [32m200[39m in 46ms[2m (next.js: 4ms, application-code: 42ms)[22m
+ GET /api/auth/session [32m200[39m in 70ms[2m (next.js: 51ms, application-code: 19ms)[22m
+[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="fr" className="unbounded_...">
+                          <body
+                            className="min-h-full flex flex-col bg-white text-black"
+-                           __processed_7c0ae987-8bf6-4395-947b-f12c81d8b022__="true"
+-                           __processed_efe58b8a-9e43-4fa6-bc35-40b4434ce43d__="true"
+                          >
+                  ...
+ 
+[31m    at Proxy.<anonymous> (https://4251e5b4-f5ce-4159-9410-89336488f4e1-00-3kt1y2owrfvf0.worf.replit.dev/__replco/static/devtools/injected.js:37:27)[39m [2m(https://4251e5b4-f5ce-4159-9410-89336488f4e1-00-3kt1y2owrfvf0.worf.replit.dev/__replco/static/devtools/injected.js:37:27)[22m
+ GET /auth/signin [32m200[39m in 1616ms[2m (next.js: 1585ms, application-code: 31ms)[22m
+ GET /auth/signup [32m200[39m in 42ms[2m (next.js: 20ms, application-code: 21ms)[22m
+ POST /api/auth/signup [32m200[39m in 582ms[2m (next.js: 174ms, application-code: 408ms)[22m
+ GET /api/auth/providers [32m200[39m in 48ms[2m (next.js: 39ms, application-code: 9ms)[22m
+ GET /api/auth/csrf [32m200[39m in 11ms[2m (next.js: 3ms, application-code: 8ms)[22m
+ POST /api/auth/callback/credentials [32m200[39m in 364ms[2m (next.js: 3ms, application-code: 361ms)[22m
+ GET /api/auth/session [32m200[39m in 46ms[2m (next.js: 36ms, application-code: 10ms)[22m
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+  message: [32m'decryption operation failed'[39m,
+  stack: [32m'JWEDecryptionFailed: decryption operation failed\n'[39m +
+    [32m'    at gcmDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1693:15)\n'[39m +
+    [32m'    at decrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1716:20)\n'[39m +
+    [32m'    at flattenedDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3213:52)\n'[39m +
+    [32m'    at async compactDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3267:23)\n'[39m +
+    [32m'    at async jwtDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:4729:23)\n'[39m +
+    [32m'    at async Object.decode (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:12503:25)\n'[39m +
+    [32m'    at async Object.session (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:13816:34)\n'[39m +
+    [32m'    at async AuthHandler (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:15821:37)\n'[39m +
+    [32m'    at async getServerSession (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:19413:21)\n'[39m +
+    [32m'    at async DashboardLayout (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__0opefxk._.js:197:21)'[39m,
+  name: [32m'JWEDecryptionFailed'[39m
+}
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+  message: [32m'decryption operation failed'[39m,
+  stack: [32m'JWEDecryptionFailed: decryption operation failed\n'[39m +
+    [32m'    at gcmDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1693:15)\n'[39m +
+    [32m'    at decrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1716:20)\n'[39m +
+    [32m'    at flattenedDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3213:52)\n'[39m +
+    [32m'    at async compactDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3267:23)\n'[39m +
+    [32m'    at async jwtDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:4729:23)\n'[39m +
+    [32m'    at async Object.decode (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:12503:25)\n'[39m +
+    [32m'    at async Object.session (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:13816:34)\n'[39m +
+    [32m'    at async AuthHandler (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:15821:37)\n'[39m +
+    [32m'    at async getServerSession (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:19413:21)\n'[39m +
+    [32m'    at async DashboardPage (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__13d1pu7._.js:108:21)'[39m,
+  name: [32m'JWEDecryptionFailed'[39m
+}
+[31m[1m⨯[22m[39m TypeError: Cannot read properties of null (reading 'user')
+    at DashboardPage (src/app/dashboard/page.tsx:11:30)
+  [90m 9 |[0m   [36mconst[0m session = [36mawait[0m getServerSession(authOptions);
+  [90m10 |[0m   [36mconst[0m user = [36mawait[0m prisma.user.findUnique({
+[31m[1m>[0m [90m11 |[0m     where: { email: session!.user!.email! },
+  [90m   |[0m                              [31m[1m^[0m
+  [90m12 |[0m     include: {
+  [90m13 |[0m       projects: {
+  [90m14 |[0m         orderBy: { createdAt: [32m"desc"[0m }, {
+  digest: [32m'2051701730'[39m
+}
+ GET /dashboard [32m200[39m in 1159ms[2m (next.js: 1024ms, application-code: 135ms)[22m
+ GET /auth/signin [32m200[39m in 30ms[2m (next.js: 3ms, application-code: 27ms)[22m
+ GET /auth/signin [32m200[39m in 21ms[2m (next.js: 3ms, application-code: 17ms)[22m
+ GET /api/auth/providers [32m200[39m in 53ms[2m (next.js: 43ms, application-code: 10ms)[22m
+ GET /api/auth/csrf [32m200[39m in 49ms[2m (next.js: 40ms, application-code: 9ms)[22m
+ POST /api/auth/callback/credentials [32m200[39m in 345ms[2m (next.js: 3ms, application-code: 342ms)[22m
+ GET /api/auth/session [32m200[39m in 52ms[2m (next.js: 42ms, application-code: 10ms)[22m
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+  message: [32m'decryption operation failed'[39m,
+  stack: [32m'JWEDecryptionFailed: decryption operation failed\n'[39m +
+    [32m'    at gcmDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1693:15)\n'[39m +
+    [32m'    at decrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1716:20)\n'[39m +
+    [32m'    at flattenedDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3213:52)\n'[39m +
+    [32m'    at async compactDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3267:23)\n'[39m +
+    [32m'    at async jwtDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:4729:23)\n'[39m +
+    [32m'    at async Object.decode (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:12503:25)\n'[39m +
+    [32m'    at async Object.session (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:13816:34)\n'[39m +
+    [32m'    at async AuthHandler (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:15821:37)\n'[39m +
+    [32m'    at async getServerSession (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:19413:21)\n'[39m +
+    [32m'    at async DashboardLayout (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__0opefxk._.js:197:21)'[39m,
+  name: [32m'JWEDecryptionFailed'[39m
+}
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+  message: [32m'decryption operation failed'[39m,
+  stack: [32m'JWEDecryptionFailed: decryption operation failed\n'[39m +
+    [32m'    at gcmDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1693:15)\n'[39m +
+    [32m'    at decrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:1716:20)\n'[39m +
+    [32m'    at flattenedDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3213:52)\n'[39m +
+    [32m'    at async compactDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:3267:23)\n'[39m +
+    [32m'    at async jwtDecrypt (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:4729:23)\n'[39m +
+    [32m'    at async Object.decode (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:12503:25)\n'[39m +
+    [32m'    at async Object.session (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:13816:34)\n'[39m +
+    [32m'    at async AuthHandler (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:15821:37)\n'[39m +
+    [32m'    at async getServerSession (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__08qh-w0._.js:19413:21)\n'[39m +
+    [32m'    at async DashboardPage (/home/runner/workspace/.next/dev/server/chunks/ssr/[root-of-the-server]__13d1pu7._.js:108:21)'[39m,
+  name: [32m'JWEDecryptionFailed'[39m
+}
+[31m[1m⨯[22m[39m TypeError: Cannot read properties of null (reading 'user')
+    at DashboardPage (src/app/dashboard/page.tsx:11:30)
+  [90m 9 |[0m   [36mconst[0m session = [36mawait[0m getServerSession(authOptions);
+  [90m10 |[0m   [36mconst[0m user = [36mawait[0m prisma.user.findUnique({
+[31m[1m>[0m [90m11 |[0m     where: { email: session!.user!.email! },
+  [90m   |[0m                              [31m[1m^[0m
+  [90m12 |[0m     include: {
+  [90m13 |[0m       projects: {
+  [90m14 |[0m         orderBy: { createdAt: [32m"desc"[0m }, {
+  digest: [32m'2051701730'[39m
+}
+ GET /dashboard [32m200[39m in 40ms[2m (next.js: 3ms, application-code: 37ms)[22m
+ GET /auth/signin [32m200[39m in 29ms[2m (next.js: 3ms, application-code: 26ms)[22m
+ GET /auth/signin [32m200[39m in 24ms[2m (next.js: 2ms, application-code: 21ms)[22m
+[32m[1m✓[22m[39m Compiled in 86ms
+ GET /auth/signin [32m200[39m in 36ms[2m (next.js: 3ms, application-code: 33ms)[22m

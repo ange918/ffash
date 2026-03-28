@@ -1,0 +1,153 @@
+
+> ffas@0.1.0 dev
+> next dev -p 5000 -H 0.0.0.0
+
+[1G[0K[1m[38;2;173;127;168m▲ Next.js 16.2.0[39m[22m (Turbopack)
+- Local:         http://localhost:5000
+- Network:       http://0.0.0.0:5000
+[32m[1m✓[22m[39m Ready in 341ms
+
+ GET / [32m200[39m in 368ms[2m (next.js: 158ms, application-code: 210ms)[22m
+[next-auth][warn][NO_SECRET] 
+https://next-auth.js.org/warnings#no_secret
+[next-auth][error][JWT_SESSION_ERROR] 
+https://next-auth.js.org/errors#jwt_session_error decryption operation failed {
+  message: [32m'decryption operation failed'[39m,
+  stack: [32m'JWEDecryptionFailed: decryption operation failed\n'[39m +
+    [32m'    at gcmDecrypt (/home/runner/workspace/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_0wmi9~u._.js:734:15)\n'[39m +
+    [32m'    at decrypt (/home/runner/workspace/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_0wmi9~u._.js:757:20)\n'[39m +
+    [32m'    at flattenedDecrypt (/home/runner/workspace/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_0wmi9~u._.js:2254:52)\n'[39m +
+    [32m'    at async compactDecrypt (/home/runner/workspace/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_0wmi9~u._.js:2308:23)\n'[39m +
+    [32m'    at async jwtDecrypt (/home/runner/workspace/.next/dev/server/chunks/node_modules_jose_dist_node_cjs_0wmi9~u._.js:3770:23)\n'[39m +
+    [32m'    at async Object.decode (/home/runner/workspace/.next/dev/server/chunks/node_modules_next-auth_045ewy.._.js:725:25)\n'[39m +
+    [32m'    at async Object.session (/home/runner/workspace/.next/dev/server/chunks/node_modules_next-auth_045ewy.._.js:2038:34)\n'[39m +
+    [32m'    at async AuthHandler (/home/runner/workspace/.next/dev/server/chunks/node_modules_next-auth_045ewy.._.js:3184:37)\n'[39m +
+    [32m'    at async NextAuthRouteHandler (/home/runner/workspace/.next/dev/server/chunks/node_modules_next-auth_045ewy.._.js:3501:30)\n'[39m +
+    [32m'    at async NextAuth._args$ (/home/runner/workspace/.next/dev/server/chunks/node_modules_next-auth_045ewy.._.js:3536:24)\n'[39m +
+    [32m'    at async AppRouteRouteModule.do (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:40732)\n'[39m +
+    [32m'    at async AppRouteRouteModule.handle (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:5:47861)\n'[39m +
+    [32m'    at async responseGenerator (/home/runner/workspace/.next/dev/server/chunks/node_modules_next_134j~.d._.js:13627:38)\n'[39m +
+    [32m'    at async AppRouteRouteModule.handleResponse (/home/runner/workspace/node_modules/next/dist/compiled/next-server/app-route-turbo.runtime.dev.js:1:227216)\n'[39m +
+    [32m'    at async handleResponse (/home/runner/workspace/.next/dev/server/chunks/node_modules_next_134j~.d._.js:13690:32)\n'[39m +
+    [32m'    at async Module.handler (/home/runner/workspace/.next/dev/server/chunks/node_modules_next_134j~.d._.js:13744:13)\n'[39m +
+    [32m'    at async DevServer.renderToResponseWithComponentsImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:1454:9)\n'[39m +
+    [32m'    at async DevServer.renderPageComponent (/home/runner/workspace/node_modules/next/dist/server/base-server.js:1506:24)\n'[39m +
+    [32m'    at async DevServer.renderToResponseImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:1556:32)\n'[39m +
+    [32m'    at async DevServer.pipeImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:1043:25)\n'[39m +
+    [32m'    at async NextNodeServer.handleCatchallRenderRequest (/home/runner/workspace/node_modules/next/dist/server/next-server.js:338:17)\n'[39m +
+    [32m'    at async DevServer.handleRequestImpl (/home/runner/workspace/node_modules/next/dist/server/base-server.js:934:17)\n'[39m +
+    [32m'    at async /home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:394:20\n'[39m +
+    [32m'    at async Span.traceAsyncFn (/home/runner/workspace/node_modules/next/dist/trace/trace.js:164:20)\n'[39m +
+    [32m'    at async DevServer.handleRequest (/home/runner/workspace/node_modules/next/dist/server/dev/next-dev-server.js:390:24)\n'[39m +
+    [32m'    at async invokeRender (/home/runner/workspace/node_modules/next/dist/server/lib/router-server.js:253:21)\n'[39m +
+    [32m'    at async handleRequest (/home/runner/workspace/node_modules/next/dist/server/lib/router-server.js:452:24)\n'[39m +
+    [32m'    at async requestHandlerImpl (/home/runner/workspace/node_modules/next/dist/server/lib/router-server.js:501:13)\n'[39m +
+    [32m'    at async Server.requestListener (/home/runner/workspace/node_modules/next/dist/server/lib/start-server.js:225:13)'[39m,
+  name: [32m'JWEDecryptionFailed'[39m
+}
+ GET /api/auth/session [32m200[39m in 773ms[2m (next.js: 738ms, application-code: 35ms)[22m
+ GET / [32m200[39m in 52ms[2m (next.js: 4ms, application-code: 48ms)[22m
+ GET /api/auth/session [32m200[39m in 49ms[2m (next.js: 39ms, application-code: 10ms)[22m
+[32m[1m✓[22m[39m Compiled in 779ms
+[32m[1m✓[22m[39m Compiled in 197ms
+ GET / [32m200[39m in 56ms[2m (next.js: 7ms, application-code: 49ms)[22m
+ GET /api/auth/session [32m200[39m in 67ms[2m (next.js: 50ms, application-code: 18ms)[22m
+[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <SegmentViewNode type="page" pagePath="page.tsx">
+      <SegmentTrieNode>
+      <ClientPageRoot Component={function LandingPage} serverProvidedParams={{...}}>
+        <LandingPage params={Promise} searchParams={Promise}>
+          <div className="min-h-scre...">
+            <header>
+            <main className="flex-1 fle...">
+              <section className="flex-1 fle...">
+                <motion.div initial={{opacity:0,y:32}} animate={{opacity:1,y:0}} transition={{duration:0.8, ...}} ...>
+                  <div className="text-cente..." style={{opacity:0, ...}} ref={function useMotionRef.useCallback}>
+                    <h1>
+                    <p>
+                    <motion.div whileHover={{scale:1.02}} whileTap={{scale:0.98}}>
+                      <div tabIndex={0} style={{}} ref={function useMotionRef.useCallback}>
+                        <LinkComponent href="/auth/signup" className="inline-blo...">
+                          <a
++                           className="inline-block bg-black !text-white text-xs tracking-widest uppercase px-10 py-4 ..."
+-                           className="inline-block bg-black text-white text-xs tracking-widest uppercase px-10 py-4 f..."
+                            ref={function}
+                            onClick={function onClick}
+                            onMouseEnter={function onMouseEnter}
+                            onTouchStart={function onTouchStart}
+                            href="/auth/signup"
+                          >
++                           COMMENCER GRATUITEMENT
+                ...
+              ...
+    ...
+ 
+[32m[1m✓[22m[39m Compiled in 403ms
+[32m[1m✓[22m[39m Compiled in 114ms
+ GET / [32m200[39m in 72ms[2m (next.js: 37ms, application-code: 35ms)[22m
+ GET /api/auth/session [32m200[39m in 50ms[2m (next.js: 38ms, application-code: 12ms)[22m
+[32m[1m✓[22m[39m Compiled in 121ms
+ GET / [32m200[39m in 48ms[2m (next.js: 5ms, application-code: 43ms)[22m
+[36m[browser][39m A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackBoundary notFound={{...}} forbidden={undefined} unauthorized={undefined}>
+      <HTTPAccessFallbackErrorBoundary pathname="/" notFound={{...}} forbidden={undefined} unauthorized={undefined} ...>
+        <RedirectBoundary>
+          <RedirectErrorBoundary router={{...}}>
+            <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{rsc:{...}, ...}} segmentPath={[...]} ...>
+              <SegmentViewNode type="page" pagePath="page.tsx">
+                <SegmentTrieNode>
+                <ClientPageRoot Component={function LandingPage} serverProvidedParams={{...}}>
+                  <LandingPage params={Promise} searchParams={Promise}>
+                    <div className="min-h-scre...">
+                      <header className="fixed top-...">
+                        <span>
+                        <nav className="flex items...">
+                          <LinkComponent href="/auth/signin" className="relative g...">
+                            <a
++                             className="relative group text-xs tracking-widest uppercase font-semibold text-black"
+-                             className="relative group text-xs tracking-widest uppercase font-semibold"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/auth/signin"
+                            >
+                          <LinkComponent href="/auth/signup" className="relative g...">
+                            <a
++                             className="relative group text-xs tracking-widest uppercase font-semibold text-black"
+-                             className="relative group text-xs tracking-widest uppercase font-semibold"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/auth/signup"
+                            >
+                      ...
+              ...
+            ...
+ 
+ GET /api/auth/session [32m200[39m in 54ms[2m (next.js: 40ms, application-code: 14ms)[22m
